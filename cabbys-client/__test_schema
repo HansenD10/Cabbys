@@ -1,0 +1,41 @@
+Food = [
+  {
+    Category: String,
+    Items: [{
+      Title: String,
+      Description: String,
+      Price: String
+    }, ...]
+  }, ...
+]
+
+Drink = [
+  {
+    Category: String,
+    Items: [{
+      Title: String,
+      Description: String,
+      Price: String
+    }, ...]
+  }, ...
+]
+
+
+Event = [
+  {
+    Title: String,
+    Description,
+    Date: String,
+    Time: String
+  }, ...
+]
+
+Contact = {
+  Content: String,
+  Phone: String,
+  Email: String,
+  Twitter: String,
+  Facebook: String,
+  Instagram: String,
+  Snapchat: String
+}

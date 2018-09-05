@@ -1,0 +1,70 @@
+.home-logo {
+  background-image: url('../Images/CabbysLogo.png');
+  width: 50%;
+  height: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.home-wrapper {
+  background-image: url('../Images/Home.jpg');
+}
+
+.home-box {
+  display: flex;
+  padding: 20px;
+  color: white;
+  max-width: 1000px;
+  width: 80vw;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 12vh auto;
+  box-shadow:inset 0px 0px 0px 5px white;
+}
+
+.location-icon {
+  background-image: url('../Images/Location.png');
+  background-size: contain;
+  display: none;
+  background-repeat: no-repeat;
+}
+
+.phone-icon {
+  background-image: url('../Images/Phone.png');
+  background-size: contain;
+  display: none;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 766px) {
+  .home-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-logo {
+    width: 70vw;
+    margin: 0 auto;
+  }
+  
+  .location-icon {
+    display: block;
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    left: 20px;
+    bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .phone-icon {
+    display: block;
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+  }
+}
