@@ -1,47 +1,52 @@
-import React, { Component } from 'react';
-import NavBar from './Components/NavBar'
-import { Route } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import Basic from './Components/Basic/Basic';
+import Basic from './Components/Basic/Basic'
+import Login from './Auth/Login'
+import Admin from './Components/Admin/Admin'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: {
-        foods: [],
-        drinks: [],
-        events: [],
-        contact: []
-      }
-    }
+    // this.state = {
+    //   data: {
+    //     foods: [],
+    //     drinks: [],
+    //     events: [],
+    //     contact: []
+    //   }
+    // }
   }
 
-  async componentWillMount() {
-    let foods = await axios.get("http://localhost:8080/api/foods"),
-      drinks = await axios.get("http://localhost:8080/api/drinks"),
-      events = await axios.get("http://localhost:8080/api/events"),
-      contact = await axios.get("http://localhost:8080/api/contact"),
-      hours = await axios.get("http://localhost:8080/api/hours")
+  // async componentWillMount() {
+  //   let foods = await axios.get("./api/foods"),
+  //     drinks = await axios.get("./api/drinks"),
+  //     events = await axios.get("./api/events"),
+  //     contact = await axios.get("./api/contact"),
+  //     hours = await axios.get("./api/hours")
 
-    this.setState({
-      data: {
-        foods: foods.data,
-        drinks: drinks.data,
-        events: events.data,
-        contact: contact.data,
-        hours: hours.data
-      }
-    })
-  }
+  //   this.setState({
+  //     ...this.state,
+  //     data: {
+  //       foods: foods.data,
+  //       drinks: drinks.data,
+  //       events: events.data,
+  //       contact: contact.data,
+  //       hours: hours.data
+  //     }
+  //   })
+  // }
 
   render() {
     return (
       <div className="container">
-        <NavBar />
-        <Route exact path="/" component={Basic}/>
+        <Switch>
+          <Route exact path="/admin" component={Admin} />
+          <Route exact path="/admin/login" component={Login} />
+          <Route path="" render={() => <Redirect to='/admin/login' />} />
+        </Switch>
       </div>
-    );
+    )
   }
 }
 

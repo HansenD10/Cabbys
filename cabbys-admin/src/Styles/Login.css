@@ -1,0 +1,11 @@
+.login-wrapper {
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(102,102,102,1);
+  background: radial-gradient(ellipse at center, rgba(102,102,102,1) 0%, rgba(23,23,23,1) 100%);
+}
+
+#auth0-login-container {
+  height: 100%;
+}
