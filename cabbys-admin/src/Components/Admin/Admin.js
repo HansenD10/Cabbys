@@ -1,15 +1,31 @@
-import React from 'react'
-import isAuthenticated from '../../Auth/isAuthenticated';
+import React, { Component } from 'react'
+import isAuthenticated from '../../Auth/isAuthenticated'
 import { Redirect } from 'react-router-dom'
+import Nav from '../Nav/Nav'
+import Basic from '../Basic/Basic'
 
-const Admin = (props) => (
-  isAuthenticated() ? (
-    <div>
-      <h2>You're signed in</h2>
-    </div>
-  ) : (
-    <Redirect to='/admin/login' />
-  )
-)
+export default class Admin extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      contentPage: <Basic />
+    }
+  }
 
-export default Admin
+  render() {
+    let { contentPage } = this.state
+    if(isAuthenticated()) {
+      return (
+        <div>
+          <Nav />
+          {contentPage}
+        </div>
+      )
+    } 
+    else {
+      return (
+        <Redirect to='/admin/login' />
+      )
+    }
+  }
+}

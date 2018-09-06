@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import './Nav.css'
+import '../../Styles/Nav.css'
 
 export default class Nav extends Component {
   render() {
@@ -12,11 +12,11 @@ export default class Nav extends Component {
         </div>
         <div className="drawer">
          <div className="nav-links">
-            <NavLink exact to="/" className="nav-link">Basic</NavLink>
+            <h2 className="nav-link">Basic</h2>
             <hr className="divider" />
-            <NavLink exact to="/Menu" className="nav-link">Menu</NavLink>
+            <h2 className="nav-link">Menu</h2>
             <hr className="divider" />
-            <NavLink exact to="/Events" className="nav-link">Events</NavLink>
+            <h2 className="nav-link">Events</h2>
           </div>
         </div>
       </div>
