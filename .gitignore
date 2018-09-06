@@ -24,3 +24,4 @@ chrome-user-data
 *.swo
 package-lock.json
 auth0-variables.js
+/cabbys-admin/src/Styles/**/*.css*
