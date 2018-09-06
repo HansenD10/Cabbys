@@ -49,8 +49,8 @@ class App extends Component {
             <Switch location={location}>
               <Route exact path="/" render={() => <Home hours={hours} />} />
               {/* <Route exact path="/Menu" render={() => <Menu foods={foods} />} />  */}
-              <Route exact path="/Events" render={() => <Events events={events} />} />
-              <Route exact path="/About" component={About} />
+              <Route exact path="/events" render={() => <Events events={events} />} />
+              <Route exact path="/about" component={About} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
