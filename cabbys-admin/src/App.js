@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import axios from 'axios'
-import Basic from './Components/Basic/Basic'
+// import axios from 'axios'
 import Login from './Auth/Login'
 import Admin from './Components/Admin/Admin'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    // this.state = {
-    //   data: {
-    //     foods: [],
-    //     drinks: [],
-    //     events: [],
-    //     contact: []
-    //   }
-    // }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   // this.state = {
+  //   //   data: {
+  //   //     foods: [],
+  //   //     drinks: [],
+  //   //     events: [],
+  //   //     contact: []
+  //   //   }
+  //   // }
+  // }
 
   // async componentWillMount() {
   //   let foods = await axios.get("./api/foods"),
