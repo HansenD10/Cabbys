@@ -10,7 +10,7 @@ const express = require('express'),
   Drink = require('./api/models/drinkModel'),
   Contact = require('./api/models/contactModel'),
   Hours = require('./api/models/hoursModel'),
-  routes = require('./api/routes/')
+  routes = require('./routes')
 
 //MongoDB Setup
 mongoose.Promise = global.Promise
@@ -24,16 +24,6 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '/build/client')))
 
 routes(app)
-
-//Route to client
-app.get(['/', '/About', '/Events', '/Menu'], (req,res) => {
-  res.sendFile(path.join(__dirname, '/build/client/index.html'))
-})
-
-//Route to admin
-app.get(['/Admin'], (req,res) => {
-  res.sendFile(path.join(__dirname, '/build/admin/index.html'))
-})
 
 //Start server
 app.listen(port, () => console.log(`Listening on port ${port}`))
