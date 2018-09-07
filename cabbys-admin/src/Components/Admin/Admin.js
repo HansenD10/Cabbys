@@ -8,7 +8,7 @@ export default class Admin extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      contentPage: <Basic />
+      contentPage: 'Basic'
     }
   }
 
@@ -18,7 +18,7 @@ export default class Admin extends Component {
       return (
         <div>
           <Nav />
-          {contentPage}
+          {contentPage === 'Basic' && this.props.hours && <Basic hours={this.props.hours[0].hours} />}
         </div>
       )
     } 

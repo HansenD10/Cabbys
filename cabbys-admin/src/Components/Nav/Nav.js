@@ -1,22 +1,29 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 import '../../Styles/Nav.css'
 
 export default class Nav extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selected: ''
+    }
+  }
+
+
   render() {
     return (
       <div>
-        <div className="header">
-          <div className="banner-logo"></div>
-          <h1>Cabby's Admin</h1>
-        </div>
         <div className="drawer">
-         <div className="nav-links">
-            <h2 className="nav-link">Basic</h2>
+          <div className="header">
+            <div className="banner-logo"></div>
+            <p>Cabby's Admin</p>
+          </div>
+          <div className="nav-links">
+            <p className="nav-link active">Basic</p>
             <hr className="divider" />
-            <h2 className="nav-link">Menu</h2>
+            <p className="nav-link">Menu</p>
             <hr className="divider" />
-            <h2 className="nav-link">Events</h2>
+            <p className="nav-link">Events</p>
           </div>
         </div>
       </div>
