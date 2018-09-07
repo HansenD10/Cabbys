@@ -1,7 +1,5 @@
 @import '../globals';
 
-@include react-md-everything;
-
 * {
   box-sizing: border-box;
 }
@@ -16,6 +14,7 @@ body,
   font-family: 'Roboto', sans-serif;
   letter-spacing: 3px;
   overflow: hidden;
+  background:   $content-background;
 }
 
 
@@ -29,7 +28,7 @@ body,
   flex-direction: row;
   height: 100vh;
   width: 100vw;
-  padding: 100px 0 0 200px;
+  padding: 1em 0 0 200px;
 }
 
 .divider {

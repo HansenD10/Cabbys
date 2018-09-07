@@ -1,48 +1,111 @@
+@import '../globals';
+
 .hours-wrapper {
-  color: white;
   margin: 0 auto;
-  width: 90%;
-  height: 250px;
-  background-color: #2196F3;
-  border-radius: 1em;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
+  width: 95%;
+  height: 300px;
+  background-color: $white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  
+  .hours-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    border-bottom: 2px solid $primary;
+    
+     h3 {
+      margin: 10px 20px 10px;
+      padding: 3px 15px;
+      color: $white;
+      background-color: $primary;
+      border-radius: 1em;
+      letter-spacing: 2px;
+    }
 
-.hours-header {
-  margin-top: 10px;
-  text-align: center;
-}
+    .hours-btn-group {
+      display: flex;
+      flex-direction: row;
+    
+      .update-btn {
+        margin: 10px 20px 10px;
+        padding: 4px 15px;
+        color: $accent-success;
+        border: 2px solid $accent-success;
+        border-radius: 1em;
+        letter-spacing: 2px;
+        cursor: pointer;
 
-.hours-form {
-  width: 100%;
-  height: 100px;
-}
+        &:hover {
+          background-color: $accent-success;
+          color: $white;
+        }
+      }
+    
+      .reset-btn {
+        margin: 10px 20px 10px;
+        padding: 4px 15px;
+        color: $accent;
+        border: 2px solid $accent;
+        border-radius: 1em;
+        letter-spacing: 2px;
+        cursor: pointer;
 
-.form-group {
-  text-align: center;
-  width: 14%;
-}
+        &:hover {
+          background-color: $accent;
+          color: $white;
+        }
+      }
+    }
+  }
 
-.form-group p  {
-  margin: 0;
-}
+  .hours-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 80%;
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      width: 14%;
+      height: 100%;
+      padding: 10px 10px;
+      
+      .day {
+        color: $content-text-color;
+        border-bottom: 2px solid $primary;
+      }
+    
+      .pickers-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        
+        .closed-btn {
+          padding: 0 10px;
+          color: $primary;
+          margin: auto;
+          border-radius: 2em;
+          border: 3px solid $primary;
+          cursor: pointer;
 
-.form-group select {
-  border: none;
-  padding: 3px;
-  margin-left: 5px;
-}
+          &:hover {
+            color: $white;
+            background-color: $primary;
+            transition: all 300ms ease-in-out;
+          }
+        }
+      }
 
-.hour {
-  border: none;
-  padding: 3px;
-  width: 24px;
-  margin-right: 5px;
-}
-
-.minute {
-  margin-left: 3px;
-  border: none;
-  padding: 3px;
-  width: 30px;
+      p  {
+        margin: 0;
+        margin-top: 10px;
+      }
+      
+    }
+  }
 }

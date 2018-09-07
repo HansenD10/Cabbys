@@ -1,4 +1,61 @@
-@import 'react-md/src/scss/react-md';
+$primary: #089DE3;
+$primary-nav: #052363;
+$white: #ffffff;
+$content-text-color: #000000;
+$content-background: #F0F0F0;
+$accent: #E52222;
+$accent-success: #5CB85C;
 
-$md-pirmary-color: $md-light-blue-300;
-$md-secondary-color: $md-light-green-a-400;
+@import 'react-md/src/scss/react-md';
+@include react-md-everything;
+$material-icons-font-path: '~material-icons/iconfont/';
+@import 'material-icons/iconfont/material-icons.scss';
+
+
+.md-picker-header {
+  background-color: $primary;
+}
+
+.md-clock-hand {
+  background-color: $white;
+
+  &::after {
+    background-color: $white;
+  }
+
+  &::before {
+    background-color: $white;
+  }
+}
+
+.md-clock-time {
+  color: $white;
+
+  &.md-picker-text--active {
+    color: $primary;
+  }
+}
+
+.md-picker-text {
+  color: #ffffff9a;
+}
+
+.md-picker-text--active{
+  color: $white;
+}
+
+.md-clock-face {
+  background-color: $primary;
+}
+
+.md-text--theme-primary {
+  color: $primary;
+}
+
+.md-divider {
+  background-color: #ffffff9a;
+
+  &::after {
+    background-color: $primary;
+  }
+}
