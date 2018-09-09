@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, Home, About, Events } from './Components'
+import { Nav, Home, About, Events, Menu } from './Components'
 import { Route, Switch } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
@@ -37,7 +37,7 @@ class App extends Component {
 
   render() {
     let { location } = this.props
-    let { events, hours } = this.state.data
+    let { events, hours, foods } = this.state.data
     return (
       <div>
         <Nav updateSelected={this.updateSelected} />
@@ -48,7 +48,7 @@ class App extends Component {
             classNames="fade">
             <Switch location={location}>
               <Route exact path="/" render={() => <Home hours={hours} />} />
-              {/* <Route exact path="/Menu" render={() => <Menu foods={foods} />} />  */}
+              <Route exact path="/menu" render={() => <Menu foods={foods} />} /> 
               <Route exact path="/events" render={() => <Events events={events} />} />
               <Route exact path="/about" component={About} />
             </Switch>

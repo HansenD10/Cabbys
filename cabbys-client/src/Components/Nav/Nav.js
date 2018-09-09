@@ -23,7 +23,7 @@ export default class Nav extends Component {
       <div className="nav-wrapper">
         <div className="nav-links">
           <NavLink exact to="/" className="nav-link">HOME</NavLink>
-          <NavLink exact to="/menu" className="disabled nav-link">MENU</NavLink>
+          <NavLink exact to="/menu" className="nav-link">MENU</NavLink>
           <NavLink exact to="/events" className="nav-link">EVENTS</NavLink>
           <NavLink exact to="/about" className="nav-link">CONTACT US</NavLink>
         </div>
@@ -32,7 +32,7 @@ export default class Nav extends Component {
           <hr className="menu-divider" />
           <div className="dropdown-links">
             <NavLink exact to="/" onClick={() => this.setState({toggle: false})} className="dropdown-link">HOME</NavLink>
-            <NavLink exact to="/menu" onClick={() => this.setState({toggle: false})} className="disabled dropdown-link">MENU</NavLink>
+            <NavLink exact to="/menu" onClick={() => this.setState({toggle: false})} className="dropdown-link">MENU</NavLink>
             <NavLink exact to="/events" onClick={() => this.setState({toggle: false})} className="dropdown-link">EVENTS</NavLink>
             <NavLink exact to="/about" onClick={() => this.setState({toggle: false})} className="dropdown-link">ABOUT</NavLink>
           </div>
