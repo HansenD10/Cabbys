@@ -24,7 +24,7 @@ exports.add_food_category = (req, res) => {
 
 // //Deletes category with id
 exports.delete_food_category = (req, res) => {
-  Food.remove({ _id: req.body.id }, (err, food) => {
+  Food.deleteOne({ _id: req.body.id }, (err, food) => {
     if (err)
       res.send(err)
     res.json({ message: 'Food category successfully deleted' })
