@@ -6,17 +6,6 @@
   }
 }
 
-.contact-content {
-  padding: 20px;
-  color: white;
-  max-width: 1000px;
-  width: 80vw;
-  height: 70%;
-  background-color: rgba(0, 0, 0, 0.801);
-  margin: 12vh auto;
-  box-shadow:inset 0px 0px 0px 5px white;
-}
-
 .social-media-icons {
   display: flex;
   justify-content: space-evenly;

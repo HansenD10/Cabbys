@@ -31,7 +31,7 @@ export default class EventList extends Component {
     let { selectionMade } = this.state
 
     return (
-      <div className="event-list-wrapper">
+      <div className="event-list-wrapper page-block">
         <div className="event-list-header">
           <h1>Upcoming Events</h1>
           <hr />
@@ -49,6 +49,7 @@ export default class EventList extends Component {
                   key={event._id} />
               )
             }
+            return null
           }) :
           <h1 className="no-events">No Upcoming Events</h1>
         }

@@ -8,7 +8,7 @@ export default class Menu extends Component {
     let { foods } = this.props
     return (
       <div className="menu-page-wrapper wrapper">
-        <div className="menu-wrapper">
+        <div className="menu-wrapper page-block">
           <MenuCategory foods={foods} />
           <MenuContent />
         </div>

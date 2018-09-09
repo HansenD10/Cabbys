@@ -9,7 +9,7 @@ export default class Home extends Component {
     
     return (
       <div className="home-wrapper wrapper">
-        <div className="home-box">
+        <div className="page-block home-box">
           <div className="home-logo"></div>
           <HomeInfo hours={hours}/>
         </div>

@@ -5,7 +5,7 @@ export default class About extends Component {
   render() {
     return (
       <div className="contact-wrapper wrapper">
-        <div className="contact-content">
+        <div className="page-block">
           <div className="contact-text">
             <h1>About Us</h1>
             <hr />
