@@ -37,7 +37,7 @@ class App extends Component {
 
   render() {
     let { location } = this.props
-    let { events, hours, foods } = this.state.data
+    let { events, hours, foods, drinks } = this.state.data
     return (
       <div>
         <Nav updateSelected={this.updateSelected} />
@@ -48,7 +48,7 @@ class App extends Component {
             classNames="fade">
             <Switch location={location}>
               <Route exact path="/" render={() => <Home hours={hours} />} />
-              <Route exact path="/menu" render={() => <Menu foods={foods} />} /> 
+              <Route exact path="/menu" render={() => <Menu foods={foods} drinks={drinks}/>} /> 
               <Route exact path="/events" render={() => <Events events={events} />} />
               <Route exact path="/about" component={About} />
             </Switch>
