@@ -21,6 +21,7 @@ const Food = new Schema({
     type: String,
     required: 'Please enter a category'
   },
+  note: String,
   items: [Item]
 })
 
