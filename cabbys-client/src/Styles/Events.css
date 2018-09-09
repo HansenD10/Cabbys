@@ -128,5 +128,10 @@
   .hide {
     display: none;
   }
+}
 
+@media screen and (max-height: 650px) { 
+  .event-list-wrapper {
+    font-size: .8em;
+  }
 }

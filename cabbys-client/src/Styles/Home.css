@@ -21,6 +21,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   margin: 12vh auto;
   box-shadow:inset 0px 0px 0px 5px white;
+  overflow: hidden;
 }
 
 .location-icon {
@@ -39,12 +40,13 @@
 
 @media screen and (max-width: 766px) {
   .home-box {
+    font-size: 1em;
     display: flex;
     flex-direction: column;
   }
 
   .home-logo {
-    width: 70vw;
+    width: 60vw;
     margin: 0 auto;
   }
   
@@ -66,5 +68,11 @@
     right: 20px;
     bottom: 20px;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-height: 650px) { 
+  .home-box {
+    font-size: .8em;
   }
 }

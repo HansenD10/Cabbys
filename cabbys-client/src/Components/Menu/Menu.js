@@ -7,9 +7,11 @@ export default class Menu extends Component {
   render() {
     let { foods } = this.props
     return (
-      <div className="menu-wrapper wrapper">
-        <MenuCategory foods={foods} />
-        <MenuContent /> 
+      <div className="menu-page-wrapper wrapper">
+        <div className="menu-wrapper">
+          <MenuCategory foods={foods} />
+          <MenuContent />
+        </div>
       </div>
     )
   }

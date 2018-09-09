@@ -63,3 +63,9 @@
   text-align: center;
   text-transform: uppercase;
 }
+
+@media screen and (max-height: 650px) { 
+  .contact-content {
+    font-size: .8em;
+  }
+}

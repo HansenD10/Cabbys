@@ -117,3 +117,9 @@
     transition: opacity 300ms ease-in;
   }
 }
+
+@media screen and (max-height: 650px) { 
+  .nav-wrapper {
+    font-size: .8em;
+  }
+}
