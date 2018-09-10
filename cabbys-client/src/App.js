@@ -3,6 +3,7 @@ import { Nav, Home, About, Events, Menu } from './Components'
 import { Route, Switch } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
+import GA from './Utils/GoogleAnalytics';
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends Component {
     let { events, hours, foods, drinks } = this.state.data
     return (
       <div>
+        { GA.init() && <GA.RouteTracker />}
         <Nav updateSelected={this.updateSelected} />
         <TransitionGroup>
           <CSSTransition
