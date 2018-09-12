@@ -25,3 +25,4 @@ chrome-user-data
 package-lock.json
 auth0-variables.js
 /cabbys-admin/src/Styles/**/*.css*
+/cabbys-client/src/Styles/**/*.css*
