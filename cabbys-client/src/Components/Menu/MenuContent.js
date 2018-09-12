@@ -12,7 +12,7 @@ export default class MenuContent extends Component {
         <div className="menu-items-list">
           {list.items ? list.items.map((item) => {
             return (
-              <div className="menu-content-items">
+              <div key={item._id} className="menu-content-items">
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
                 <p>{item.price}</p>
