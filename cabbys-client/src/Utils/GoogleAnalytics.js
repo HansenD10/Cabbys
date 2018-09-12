@@ -49,19 +49,14 @@ const RouteTracker = () =>
   <Route component={GoogleAnalytics} />
 
 const init = (options = {}) => {
-  const env = window._env_ || {}
-  const isGAEnabled = !!env.REACT_APP_GA_TRACKING_ID
-  console.log(env)
-  if (isGAEnabled) {
-    ReactGA.initialize(
-      env.REACT_APP_GA_TRACKING_ID, {
-        debug: env.REACT_APP_GA_DEBUG === 'true',
-        ...options
-      }
-    )
-  }
+  ReactGA.initialize(
+    'UA-125471451-2', {
+      debug: false,
+      ...options
+    }
+  )
 
-  return isGAEnabled
+  return true
 }
 
 export default {
