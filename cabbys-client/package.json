@@ -21,7 +21,7 @@
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
-    "postbuild": "sudo rm -rf ../server/build/admin/* && sudo mv ./build/* ../server/build/admin",
+    "postbuild": "sudo rm -rf ../server/build/client/* && sudo mv ./build/* ../server/build/client",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
