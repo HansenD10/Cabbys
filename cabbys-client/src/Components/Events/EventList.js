@@ -5,17 +5,16 @@ export default class EventList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedEvent: '',
-      selectionMade: false
+      selectedEvent: ''
     }
   }
 
   selectEvent = (id) => {
-    this.setState({ selectedEvent: id, selectionMade: true })
+    this.setState({ selectedEvent: id })
   }
 
   deselectEvent = () => {
-    this.setState({ selectedEvent: '', selectionMade: false })
+    this.setState({ selectedEvent: '' })
   }
 
   checkSelected = (id) => {
@@ -28,7 +27,6 @@ export default class EventList extends Component {
 
   render() {
     let { events } = this.props
-    let { selectionMade } = this.state
 
     return (
       <div className="event-list-wrapper page-block">
@@ -44,7 +42,6 @@ export default class EventList extends Component {
                   selectEvent={this.selectEvent.bind(this, event._id)}
                   deselectEvent={this.deselectEvent}
                   event={event}
-                  selectionMade={selectionMade}
                   selected={this.checkSelected(event._id)}
                   key={event._id} />
               )

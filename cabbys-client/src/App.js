@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, Home, About, Events, Menu } from './Components'
+import { Nav, Home, About, EventsPage, Menu } from './Components'
 import { Route, Switch } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
@@ -51,7 +51,7 @@ class App extends Component {
             <Switch location={location}>
               <Route exact path="/" render={() => <Home hours={hours} />} />
               <Route exact path="/menu" render={() => <Menu foods={foods} drinks={drinks}/>} /> 
-              <Route exact path="/events" render={() => <Events events={events} />} />
+              <Route exact path="/events" render={() => <EventsPage events={events} />} />
               <Route exact path="/about" component={About} />
             </Switch>
           </CSSTransition>

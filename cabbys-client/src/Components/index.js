@@ -1,12 +1,12 @@
 import About from './About/About'
-import Events from './Events/Events'
+import EventsPage from './Events/EventsPage'
 import Home from './Home/Home'
 import Menu from './Menu/Menu'
 import Nav from './Nav/Nav'
 
 export {
     About,
-    Events,
+    EventsPage,
     Home,
     Menu,
     Nav

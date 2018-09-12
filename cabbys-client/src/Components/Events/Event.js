@@ -2,18 +2,21 @@ import React, { Component } from 'react'
 
 export default class Event extends Component {
   render() {
-    let { event, selectEvent, deselectEvent, selected, selectionMade } = this.props
+    let { event, selectEvent, deselectEvent, selected } = this.props
     let eventDate = new Date(event.date)
+    let eventDay = eventDate.toLocaleDateString("dd", { day: "2-digit" })
+    let eventMonth = eventDate.toLocaleDateString("mmm", { month: "short" })
+    let eventStart = eventDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
 
     return (
-      <div className={`event-wrapper ${!selected && selectionMade ? 'hide' : 'show'} `}>
+      <div className="event-wrapper">
         <div className="event-date">
-          <p>{eventDate.toLocaleDateString("dd", { day: "2-digit" })}</p>
-          <p>{eventDate.toLocaleDateString("mmm", { month: "short" })}.</p>
+          <p>{eventDay}</p>
+          <p>{eventMonth}.</p>
         </div>
         <div className="event-info">
           <div className="event-info-header">
-            <h3 className="event-name-time">{event.name} at {event.time}</h3>
+            <h3 className="event-name-time">{event.name} at {eventStart}</h3>
           </div>
           <hr />
           {selected ?
