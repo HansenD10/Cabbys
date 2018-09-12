@@ -1,0 +1,62 @@
+.toggler {
+    display: none;
+  }
+  
+@media screen and (max-width: 766px) {
+  .toggler {
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    right: 5%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+  }
+
+  .hamburger:after,
+  .hamburger:before {
+    content: '';
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 0;
+    transition: .5s;
+  }
+
+  .hamburger:after {
+    top:  8px;
+  }
+
+  .hamburger:before {
+    top: -8px;
+  }
+
+  .toggler.open .hamburger {
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+  }
+
+  .toggler.open .hamburger:after {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .toggler.open .hamburger:before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+}
