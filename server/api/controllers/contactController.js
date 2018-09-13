@@ -18,12 +18,3 @@ exports.update_contact = (req, res) => {
     res.send(contact)
   })
 }
-
-exports.new_contact = (req, res) => {
-  let contact = new Contact(req.body)
-  contact.save((err, drink) => {
-    if(err)
-      res.send(err)
-    res.send(drink)
-  })
-}
