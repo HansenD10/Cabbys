@@ -52,7 +52,7 @@ export default class Hours extends Component {
     return (
       <div className="hours-wrapper">
         <hr />
-        <h2 className="hours-header">Hours</h2>
+        <h2 className="home-header">Hours</h2>
         <hr />
         <div className="hours-content">
           {sortedHours !== undefined && sortedHours.map((row) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react'
+import GoogleMapReact from 'google-map-react/lib'
 import Marker from './Marker'
 
 export default class Location extends Component {
@@ -8,7 +8,7 @@ export default class Location extends Component {
     return (
       <div className="location-wrapper">
         <hr />
-        <h2 className="location-header">Location</h2>
+        <h2 className="home-header">Location</h2>
         <hr />
         <div className="location-content">
           <p>N10351 Howard Dr, Fox Lake, WI 53933</p>

@@ -1,44 +1,47 @@
-.home-logo {
-  background-image: url('../Images/CabbysLogo.png');
-  width: 50%;
-  height: 100%;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
 
 .home-wrapper {
   background-image: url('../Images/Home.jpg');
+  
+  .home-box {
+    display: flex;
+    
+    .home-logo {
+      background-image: url('../Images/CabbysLogo.png');
+      width: 50%;
+      height: 100%;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+  
+  .location-icon {
+    background-image: url('../Images/Location.png');
+    background-size: contain;
+    display: none;
+    background-repeat: no-repeat;
+  }
+
+  .phone-icon {
+    background-image: url('../Images/Phone.png');
+    background-size: contain;
+    display: none;
+    background-repeat: no-repeat;
+  }
 }
 
-.home-box {
-  display: flex;
-}
 
-.location-icon {
-  background-image: url('../Images/Location.png');
-  background-size: contain;
-  display: none;
-  background-repeat: no-repeat;
-}
-
-.phone-icon {
-  background-image: url('../Images/Phone.png');
-  background-size: contain;
-  display: none;
-  background-repeat: no-repeat;
-}
 
 @media screen and (max-width: 766px) {
   .home-box {
     font-size: 1em;
     display: flex;
     flex-direction: column;
-  }
-
-  .home-logo {
-    width: 60vw;
-    margin: 0 auto;
+  
+    .home-logo {
+      width: 60vw;
+      margin: 0 auto;
+    }
   }
   
   .location-icon {
