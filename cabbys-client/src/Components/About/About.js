@@ -3,6 +3,8 @@ import '../../Styles/About.css'
 
 export default class About extends Component {
   render() {
+    let { content, facebook, instagram, twitter, phone } = this.props.contact
+
     return (
       <div className="contact-wrapper wrapper">
         <div className="page-block">
@@ -12,9 +14,10 @@ export default class About extends Component {
             <p></p>
           </div>
           <div className="social-media-icons">
-            <a href="https://www.facebook.com/CabbysGrillandPatio/"><div className="facebook icon"></div></a>
-            <a href="https://www.instagram.com/cabbysgrillandpatio/"><div className="instagram icon"></div></a>
-            <a href="https://twitter.com/cabbysgrill"><div className="twitter icon"></div></a>
+            <h4>Phone: {phone}</h4>
+            <a href={facebook}><div className="facebook icon"></div></a>
+            <a href={instagram}><div className="instagram icon"></div></a>
+            <a href={twitter}><div className="twitter icon"></div></a>
           </div>
         </div>
       </div>

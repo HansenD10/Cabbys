@@ -30,7 +30,7 @@ class App extends Component {
         foods: foods.data,
         drinks: drinks.data,
         events: events.data,
-        contact: contact.data,
+        contact: contact.data[0],
         hours: hours.data
       }
     })
@@ -38,7 +38,7 @@ class App extends Component {
 
   render() {
     let { location } = this.props
-    let { events, hours, foods, drinks } = this.state.data
+    let { events, hours, foods, drinks, contact } = this.state.data
     return (
       <div>
         { GA.init() && <GA.RouteTracker />}
@@ -52,7 +52,7 @@ class App extends Component {
               <Route exact path="/" render={() => <HomePage hours={hours} />} />
               <Route exact path="/menu" render={() => <Menu foods={foods} drinks={drinks}/>} /> 
               <Route exact path="/events" render={() => <EventsPage events={events} />} />
-              <Route exact path="/about" component={About} />
+              <Route exact path="/about" render={() => <About contact={contact} />} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
