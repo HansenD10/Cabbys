@@ -15,13 +15,13 @@ export default class MenuContent extends Component {
               <div key={item._id} className="menu-content-items">
                 <h3>{item.name}</h3>
                 <p>{item.description}</p>
-                <p>{item.price}</p>
+                <h4>{item.price}</h4>
               </div>
             )}
           ) : list.map((item) => {
             return (
               <div key={item._id} className="menu-content-items">
-                <p>{item.category}</p>
+                <h3>{item.category}</h3>
               </div>
             )
           })}
