@@ -32,7 +32,6 @@ module.exports = (app) => {
 
   app.route('/api/contact')
     .get(contact.get_contact)
-    .post(contact.new_contact)
     .put(contact.update_contact)
 
   app.route('/api/hours')
