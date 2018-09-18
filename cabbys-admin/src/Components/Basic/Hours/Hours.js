@@ -2,73 +2,81 @@ import React, { Component } from 'react'
 import '../../../Styles/Hours.css'
 import Day from './Day';
 import axios from 'axios'
+import Header from '../../Admin/Header';
 
 export default class Hours extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isChanged: false,
-      days: {}
+      days: []
     }
   }
 
   componentWillMount() {
-    let days = {}
-    for(let key in this.props.hours) {
-      days[key] = this.props.hours[key].split(' - ')
+    let { hours } = this.props
+    let tempDays = []
+    for (let i in hours) {
+      tempDays.push({
+        dow: i,
+        time: hours[i]
+      })
     }
-    this.setState({days})
+    this.setState({ days: tempDays })
   }
 
   changedDay = (day, hours) => {
     let { days } = this.state
-    let newDays = days
-      newDays[day] = hours
-      this.setState({ 
-        isChanged: true,
-        days: newDays
-      })
+    let tempDays = days
+    for(let i in days) {
+      if(tempDays[i].dow === day)
+        tempDays[i] = {dow: day, time: hours} 
+    }
+    this.setState({
+      isChanged: true,
+      days: tempDays
+    })
   }
 
-  updateHours = () => {
+  update = () => {
     let { days } = this.state
     let newHours = {}
-    for(let day in days) {
-      newHours[day] = days[day].join(' - ')
-    }
+    days.map((day) => {
+      newHours[day.dow] = day.time
+    })
     axios.put('./api/hours', {
       hours: newHours
     })
-    this.setState({isChanged: false})
+    this.setState({ isChanged: false })
   }
-  
+
+  reset = () => {
+    let { hours } = this.props
+    let tempDays = []
+    for (let i in hours) {
+      tempDays.push({
+        dow: i,
+        time: hours[i]
+      })
+    }
+    this.setState({ days: tempDays, isChanged: false })
+  }
+
   render() {
+    let { hours } = this.props
     let { isChanged, days } = this.state
 
     return (
       <div className="hours-wrapper">
-        <div className="hours-header">
-          <h3>Hours</h3>
-          {isChanged ? (
-          <div className="hours-btn-group">
-            <p 
-              className="update-btn"
-              onClick={this.updateHours}>Update</p>
-            <p
-              className="reset-btn">Reset</p>
-          </div>
-          ) : (
-            null
-          )}
-        </div>
+        <Header title="Hours" isChanged={isChanged} reset={this.reset} update={this.update} />
         <div className="hours-form">
-          {days && Object.keys(days).map((day) => {
+          {days && days.map((day) => {
             return (
-              <Day 
-                key={day} 
-                hoursObj={days[day]} 
-                changedDay={this.changedDay} 
-                day={day}/>
+              <Day
+                key={day.dow}
+                day={day.dow}
+                time={day.time}
+                changedDay={this.changedDay} />
             )
           })
           }

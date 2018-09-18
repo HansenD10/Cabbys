@@ -14,53 +14,62 @@ export default class Day extends Component {
     }
   }
 
+
+
   componentWillMount() {
-    this.isClosed(this.props.hoursObj)
+    if(this.props.time) 
+      this.isClosed(this.props.time)
   }
 
-  isClosed = (date) => {
-    if (date[1] === undefined) {
+  isClosed = (time) => {
+    if (time === 'Closed') {
       this.setState({isClosed: true})
     }
     else {
+      let splitTime = time.split(' - ')
       this.setState({
         hours: {
-          start: new Date(moment(date[0], 'h:mm A')),
-          end: new Date(moment(date[1], 'h:mm A'))
+          start: splitTime[0],
+          end: splitTime[1]
         }
       })
     }
   }
 
-  startOnChange = (e) => {
+  startOnChange = (time, day) => {
+    let { end } = this.state.hours
+    console.log(time)
     this.setState({
       hours: {
         ...this.state.hours,
-        start: new Date(moment(e, 'h:mm A'))
+        start: time
       }
     })
-    this.props.changedDay()
+    this.props.changedDay(this.props.day, `${time} - ${end}` )
   }
   
-  endOnChange = (e) => {
+  endOnChange = (time, day) => {
+    let { start } = this.state.hours
+    console.log(time)
     this.setState({
       hours: {
         ...this.state.hours,
-        end: new Date(moment(e, 'h:mm A'))
+        end: time
       }
     })
+    this.props.changedDay(this.props.day, `${start} - ${time}`)
   }
 
   onClosedClick = (day) => {
     this.setState({
       isClosed: false,
       hours: {
-        start: new Date(moment('4:00 PM', 'h:mm a')),
-        end: new Date(moment('10:00 PM', 'h:mm a'))
+        start:'4:00 PM',
+        end: '10:00 PM'
       }
     })
 
-    this.props.changedDay(day, ['4:00 PM', '10:00 PM'])
+    this.props.changedDay(this.props.day, '4:00 PM - 10:00 PM')
   }
   
   onCloseClick = (day) => {
@@ -71,13 +80,16 @@ export default class Day extends Component {
         end: null
       }
     })
-
-    this.props.changedDay(day, ['Closed'])
+    console.log(this.props.day)
+    this.props.changedDay(this.props.day, 'Closed')
   }
 
   render() {
-    let { day } = this.props
-    let { isClosed, hours } = this.state
+    let { day, time } = this.props
+    let { isClosed } = this.state
+    let hours = time.split(' - ')
+    let start = new Date(moment(hours[0], 'h:mm A'))
+    let end = new Date(moment(hours[1], 'h:mm A'))
 
     return(
       <div key={day} className="form-group">
@@ -86,23 +98,23 @@ export default class Day extends Component {
         <div className="pickers-wrapper">
           <TimePickerContainer 
             id='appointment-time-auto'
-            value={hours.start}
-            onChange={this.startOnChange.bind(this)}
+            value={start}
+            onChange={this.startOnChange}
             />
           <p>to</p>
           <TimePickerContainer 
             id='appointment-time-auto'
-            value={hours.end}
-            onChange={this.endOnChange.bind(this)}
+            value={end}
+            onChange={this.endOnChange}
             />
             <p 
-              onClick={this.onCloseClick.bind(this, day)}
+              onClick={this.onCloseClick}
               className='closed-btn'>Close</p>
         </div>
         ) : ( 
           <div className="pickers-wrapper">
             <h4 
-              onClick={this.onClosedClick.bind(this, day)} 
+              onClick={this.onClosedClick} 
               className="closed-btn">Closed</h4>
           </div>
         )}
