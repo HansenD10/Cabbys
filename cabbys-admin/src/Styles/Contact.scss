@@ -1,26 +1,9 @@
 @import '../globals';
 
 .contact-wrapper {
-  width: 47.5%;
-  height: 250px;
+  width: 45%;
+  height: 45%;
+  margin: 0 2.5%;
   background-color: $white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-
-  .contact-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    border-bottom: 2px solid $primary;
-  
-    h3 {
-      margin: 10px 20px 10px;
-      padding: 3px 15px;
-      color: $white;
-      background-color: $primary;
-      border-radius: 1em;
-      letter-spacing: 2px;
-    }
-  }
-
 }
