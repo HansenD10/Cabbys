@@ -44,32 +44,35 @@ export default class Hours extends Component {
     let { days } = this.state
     let newHours = {}
     days.map((day) => {
-      newHours[day.dow] = day.time
+      return newHours[day.dow] = day.time
     })
     axios.put('./api/hours', {
       hours: newHours
+    }).then(() => {
+      const toasts = this.state.toasts.slice()
+      toasts.push({text: 'Successfully Updated Hours'})
+      this.setState({ isChanged: false, toasts })
+    }).catch((err) => {
+      const toasts = this.state.toasts.slice()
+      toasts.push({text: 'Error Updating Hours'})
+      this.setState({ toasts })
     })
-    const toasts = this.state.toasts.slice()
-    toasts.push({text: 'Successfully Updated'})
-    this.setState({ isChanged: false, toasts })
   }
 
   reset = () => {
     let { hours } = this.props
-    let tempDays = []
+    let days = [] 
     for (let i in hours) {
-      tempDays.push({
+      days.push({
         dow: i,
         time: hours[i]
       })
     }
-    console.log(this.state.days)
-    console.log(tempDays)
-    this.setState({ days: tempDays, isChanged: false })
+
+    this.setState({ days, isChanged: false })
   }
 
   render() {
-    let { hours } = this.props
     let { isChanged, days, toasts } = this.state
 
     return (
