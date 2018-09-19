@@ -42,7 +42,7 @@ class App extends Component {
     return (
       <div className="container">
         <Switch>
-          <Route exact path="/admin" render={() => <Admin hours={data.hours} />} />
+          <Route exact path="/admin" render={() => <Admin hours={data.hours} contact={data.contact} />} />
           <Route exact path="/admin/login" component={Login} />
           <Route path="" render={() => <Redirect to='/admin/login' />} />
         </Switch>

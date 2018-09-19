@@ -18,7 +18,7 @@ export default class Admin extends Component {
       return (
         <div>
           <Nav />
-          {contentPage === 'Basic' && this.props.hours && <Basic hours={this.props.hours[0].hours} />}
+          {contentPage === 'Basic' && this.props.hours && <Basic hours={this.props.hours[0].hours} contact={this.props.contact} />}
         </div>
       )
     } 
