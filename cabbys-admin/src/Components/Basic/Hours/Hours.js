@@ -3,13 +3,15 @@ import '../../../Styles/Hours.css'
 import Day from './Day';
 import axios from 'axios'
 import Header from '../../Admin/Header';
+import SnackbarContainer from 'react-md/lib/Snackbars'
 
 export default class Hours extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isChanged: false,
-      days: []
+      days: [],
+      toasts: []
     }
   }
 
@@ -47,7 +49,9 @@ export default class Hours extends Component {
     axios.put('./api/hours', {
       hours: newHours
     })
-    this.setState({ isChanged: false })
+    const toasts = this.state.toasts.slice()
+    toasts.push({text: 'Successfully Updated'})
+    this.setState({ isChanged: false, toasts })
   }
 
   reset = () => {
@@ -59,15 +63,23 @@ export default class Hours extends Component {
         time: hours[i]
       })
     }
+    console.log(this.state.days)
+    console.log(tempDays)
     this.setState({ days: tempDays, isChanged: false })
   }
 
   render() {
     let { hours } = this.props
-    let { isChanged, days } = this.state
+    let { isChanged, days, toasts } = this.state
 
     return (
       <div className="hours-wrapper">
+        <SnackbarContainer 
+          style={{textAlign: 'center'}}
+          id="snackbar"
+          toasts={toasts}
+          autohide={true} 
+          onDismiss={() => this.setState({toasts: []})} />
         <Header title="Hours" isChanged={isChanged} reset={this.reset} update={this.update} />
         <div className="hours-form">
           {days && days.map((day) => {

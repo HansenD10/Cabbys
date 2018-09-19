@@ -7,118 +7,104 @@ export default class Day extends Component {
     super(props)
     this.state = {
       isClosed: false,
-      hours: {
-        start: null,
-        end: null
-      }
+      hours: null
     }
   }
 
 
 
   componentWillMount() {
-    if(this.props.time) 
+    if (this.props.time)
       this.isClosed(this.props.time)
   }
 
   isClosed = (time) => {
     if (time === 'Closed') {
-      this.setState({isClosed: true})
+      this.setState({ isClosed: true })
     }
     else {
-      let splitTime = time.split(' - ')
       this.setState({
-        hours: {
-          start: splitTime[0],
-          end: splitTime[1]
-        }
+        hours: time
       })
     }
   }
 
-  startOnChange = (time, day) => {
-    let { end } = this.state.hours
-    console.log(time)
+  startOnChange = (time) => {
+    let { hours } = this.state
+    let newHours = time + ' - ' + hours.split(' - ')[1]
+    console.log(this.props.day)
+    this.props.changedDay(this.props.day, newHours)
     this.setState({
-      hours: {
-        ...this.state.hours,
-        start: time
-      }
+      hours: newHours
     })
-    this.props.changedDay(this.props.day, `${time} - ${end}` )
   }
-  
-  endOnChange = (time, day) => {
-    let { start } = this.state.hours
-    console.log(time)
+
+  endOnChange = (time) => {
+    let { hours } = this.state
+    let newHours = hours.split(' - ')[0] + ' - ' + time
+    console.log(this.props.day)
+    this.props.changedDay(this.props.day, newHours)
     this.setState({
-      hours: {
-        ...this.state.hours,
-        end: time
-      }
+      hours: newHours
     })
-    this.props.changedDay(this.props.day, `${start} - ${time}`)
   }
 
   onClosedClick = (day) => {
+    this.props.changedDay(this.props.day, '4:00 PM - 10:00 PM')
     this.setState({
       isClosed: false,
-      hours: {
-        start:'4:00 PM',
-        end: '10:00 PM'
-      }
+      hours: '4:00 PM - 10:00 PM'
     })
-
-    this.props.changedDay(this.props.day, '4:00 PM - 10:00 PM')
   }
-  
+
   onCloseClick = (day) => {
+    this.props.changedDay(this.props.day, 'Closed')
     this.setState({
       isClosed: true,
-      hours: {
-        start: null,
-        end: null
-      }
+      hours: null
     })
-    console.log(this.props.day)
-    this.props.changedDay(this.props.day, 'Closed')
   }
 
   render() {
     let { day, time } = this.props
     let { isClosed } = this.state
-    let hours = time.split(' - ')
-    let start = new Date(moment(hours[0], 'h:mm A'))
-    let end = new Date(moment(hours[1], 'h:mm A'))
+    if (!isClosed) {
+      let hours = time.split(' - ')
+      let start = new Date(moment(hours[0], 'h:mm A'))
+      let end = new Date(moment(hours[1], 'h:mm A'))
 
-    return(
-      <div key={day} className="form-group">
-        <h4 className="day">{day}</h4>
-        {!isClosed ? (
-        <div className="pickers-wrapper">
-          <TimePickerContainer 
-            id='appointment-time-auto'
-            value={start}
-            onChange={this.startOnChange}
+      return (
+        <div key={day} className="form-group">
+          <h4 className="day">{day}</h4>
+          <div className="pickers-wrapper">
+            <TimePickerContainer
+              id='appointment-time-auto'
+              value={start}
+              onChange={this.startOnChange}
             />
-          <p>to</p>
-          <TimePickerContainer 
-            id='appointment-time-auto'
-            value={end}
-            onChange={this.endOnChange}
+            <p>to</p>
+            <TimePickerContainer
+              id='appointment-time-auto'
+              value={end}
+              onChange={this.endOnChange}
             />
-            <p 
+            <p
               onClick={this.onCloseClick}
               className='closed-btn'>Close</p>
+          </div>
         </div>
-        ) : ( 
+      )
+    } else {
+      return (
+        <div key={day} className="form-group">
+          <h4 className="day">{day}</h4>
           <div className="pickers-wrapper">
-            <h4 
-              onClick={this.onClosedClick} 
+            <h4
+              onClick={this.onClosedClick}
               className="closed-btn">Closed</h4>
           </div>
-        )}
-      </div>
-    )
+        </div>
+      )
+    }
   }
 }

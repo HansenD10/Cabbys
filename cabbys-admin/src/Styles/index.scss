@@ -2,7 +2,15 @@
 
 * {
   box-sizing: border-box;
+  user-select: none;
+
+  &::selection {
+    background-color: white;
+    color: $primary
+  }
 }
+
+
 
 html,
 body,
