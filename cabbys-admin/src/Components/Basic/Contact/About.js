@@ -3,7 +3,7 @@ import '../../../Styles/Contact.css'
 import Header from '../../Admin/Header'
 import SnackbarContainer from 'react-md/lib/Snackbars'
 
-export default class Contact extends Component {
+export default class About extends Component {
   constructor(props) {
     super(props)
     this.state = {
