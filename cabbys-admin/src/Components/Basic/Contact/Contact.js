@@ -24,17 +24,6 @@ export default class Contact extends Component {
           autohide={true} 
           onDismiss={() => this.setState({toasts: []})} />
         <Header title="Contact Information" isChanged={isChanged} reset={this.reset} update={this.update} />
-          {isChanged ? (
-          <div className="hours-btn-group">
-            <p 
-              className="update-btn"
-              onClick={this.updateHours}>Update</p>
-            <p
-              className="reset-btn">Reset</p>
-          </div>
-          ) : (
-            null
-          )}
       </div>
     )
   }
