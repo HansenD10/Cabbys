@@ -30,8 +30,8 @@ class App extends Component {
         foods: foods.data,
         drinks: drinks.data,
         events: events.data,
-        contact: contact.data,
-        hours: hours.data
+        contact: contact.data[0],
+        hours: hours.data[0]
       }
     })
   }
