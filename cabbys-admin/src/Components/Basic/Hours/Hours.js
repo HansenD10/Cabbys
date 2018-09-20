@@ -77,8 +77,7 @@ export default class Hours extends Component {
 
     return (
       <div className="hours-wrapper">
-        <SnackbarContainer 
-          style={{textAlign: 'center'}}
+        <SnackbarContainer
           id="snackbar"
           toasts={toasts}
           autohide={true} 
