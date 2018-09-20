@@ -1,0 +1,39 @@
+@import '../globals';
+
+.links-wrapper {
+  width: 45%;
+  height: 45%;
+  margin: 0 2.5%;
+  background-color: $white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+  .links-form-group {
+    height: 80%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+      
+    .link-row {
+      display: flex;
+      flex-direction: row;
+
+      h4 {
+        width: 20%;
+        text-transform: capitalize;
+      }
+
+      input {
+        border-radius: 1em;
+        width: 80%;
+        border: 1px solid $primary;
+        padding: 10px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

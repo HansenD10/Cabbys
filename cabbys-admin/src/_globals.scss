@@ -5,6 +5,8 @@ $content-text-color: #000000;
 $content-background: #F0F0F0;
 $accent: #E52222;
 $accent-success: #5CB85C;
+$md-snackbar-color: #5CB85C;
+
 
 @import 'react-md/src/scss/react-md';
 @include react-md-everything;
