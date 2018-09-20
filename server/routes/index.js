@@ -11,7 +11,7 @@ module.exports = (app) => {
   })
 
   //Route to admin
-  app.get(['/admin'], (req,res) => {
+  app.get(['/admin', '/admin/login'], (req,res) => {
     res.sendFile(path.join(__dirname, '/../build/admin/index.html'))
   })
 }
