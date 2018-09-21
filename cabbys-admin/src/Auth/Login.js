@@ -7,7 +7,7 @@ import '../Styles/Login.css'
 const Login = (props) => (
   isAuthenticated() ? (
     <Redirect to={{
-      pathname: '/admin',
+      pathname: '/',
       state: { from: props.location }
     }} /> 
   ) : (

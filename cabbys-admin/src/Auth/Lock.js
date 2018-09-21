@@ -58,7 +58,7 @@ class Lock extends Component {
         </div>
       ) : (
         <Redirect to={{
-          pathName:"/admin",
+          pathName:"/",
           state: {from: this.props.location}
         }} />
       )
