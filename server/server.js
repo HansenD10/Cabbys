@@ -21,7 +21,6 @@ mongoose.connect('mongodb://localhost:27017/Cabbys')
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, '/build/client')))
 
 routes(app)
 

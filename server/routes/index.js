@@ -1,17 +1,19 @@
 'use strict'
 let apiRoutes = require('../api/routes'),
-    path = require('path')
+    path = require('path'),
+    express = require('express')
 
 module.exports = (app) => {
   apiRoutes(app)
+  
+  // Client Routes
+  app.use(express.static(path.join(__dirname, '/../build/client')))
+  app.use('/menu', express.static(path.join(__dirname, '/../build/client')))
+  app.use('/events', express.static(path.join(__dirname, '/../build/client')))
+  app.use('/about', express.static(path.join(__dirname, '/../build/client')))
 
-  //Route to client
-  app.get(['/', '/about', '/events', '/menu'], (req,res) => {
-    res.sendFile(path.join(__dirname, '/../build/client/index.html'))
-  })
-
-  //Route to admin
-  app.get(['/admin', '/admin/login'], (req,res) => {
-    res.sendFile(path.join(__dirname, '/../build/admin/index.html'))
-  })
+  // Admin Routes
+  app.use('/admin', express.static(path.join(__dirname, '/../build/admin')))
+  app.use('/admin/login', express.static(path.join(__dirname, '/../build/admin')))
+  
 }
