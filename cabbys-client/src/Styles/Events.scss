@@ -4,9 +4,14 @@
   .event-list-wrapper {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     
     @media screen and (max-height: 650px) { 
       font-size: .8em;
+    }
+    
+    @media screen and (max-width: 766px) {
+      font-size: .9em;
     }
 
     .event-list-header {
@@ -14,20 +19,23 @@
       text-transform: uppercase;
       text-align: center;
       color: white;
+      
+      h1 {
+        margin: 0;
+      }
     }
     
     .events-list {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
+      justify-content: space-evenly;
       
       .no-events {
         text-align: center;
       }
       
       .event-wrapper {
-        margin: 5px 0;
+        margin: 20px 0;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -49,11 +57,6 @@
         
         .event-info {
           width: 80%;
-          
-
-          @media screen and (max-width: 766px) {
-
-          }
 
           .event-info-header {
             font-size: 1em;
@@ -69,11 +72,12 @@
           .event-desc {
             margin: 0;
             font-size: 1em;
-          
+            
             @media screen and (max-width: 766px) {
+              font-size: .8em;
               height: 0;
               overflow: hidden;
-              transition: all 300ms ease-out;
+              transition: all 300ms ease-in-out;
               
               p {
                 margin-top: 5px;
@@ -83,9 +87,9 @@
           }
 
           .open {
+            transition: all 300ms ease-in-out;
             @media screen and (max-width: 766px) {
-                height: 100px;
-                transition: all 300ms ease-in;
+                height: 100%;
             }
           }
           

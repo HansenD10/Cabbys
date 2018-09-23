@@ -36,7 +36,7 @@ export default class EventList extends Component {
         </div>
         <div className="events-list">
           {events.length ? events.map((event, i) => {
-            while (i < 3) {
+            while (i < 2) {
               return (
                 <Event
                   selectEvent={this.selectEvent.bind(this, event._id)}
