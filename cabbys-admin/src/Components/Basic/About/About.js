@@ -29,8 +29,10 @@ export default class About extends Component {
   update = () => {
     let { aboutBlurb } = this.state 
 
-    axios.put('./api/contact', {
-      content: aboutBlurb.trim()
+    axios.put('../api/contact', {
+      data: { content: aboutBlurb.trim() }
+    }, {
+      headers: { Authorization: 'Bearer ' + localStorage.getItem('access_token')}
     }).then(() => {
       const toasts = this.state.toasts.slice()
       toasts.push({text: 'Successfully Updated Blurb'})

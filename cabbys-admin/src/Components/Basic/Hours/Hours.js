@@ -46,8 +46,10 @@ export default class Hours extends Component {
     days.map((day) => {
       return newHours[day.dow] = day.time
     })
-    axios.put('./api/hours', {
+    axios.put('../api/hours', {
       hours: newHours
+    }, {
+      headers: { Authorization: 'Bearer ' + localStorage.getItem('access_token')}
     }).then(() => {
       const toasts = this.state.toasts.slice()
       toasts.push({text: 'Successfully Updated Hours'})

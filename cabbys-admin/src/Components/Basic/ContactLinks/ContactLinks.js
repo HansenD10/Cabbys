@@ -46,8 +46,10 @@ export default class ContactLinks extends Component {
   update = () => {
     let { links } = this.state 
 
-    axios.put('./api/contact', {
+    axios.put('../api/contact', { 
       data: links
+    }, {
+      headers: { Authorization: 'Bearer ' + localStorage.getItem('access_token')}
     }).then(() => {
       const toasts = this.state.toasts.slice()
       toasts.push({text: 'Successfully Updated Links'})
@@ -73,7 +75,7 @@ export default class ContactLinks extends Component {
         <div className="links-form-group">
           {Object.keys(links).map((link) => {
             return (
-              <div className="link-row">
+              <div key={link} className="link-row">
                 <h4>{link}</h4>
                 <input 
                   value={links[link]} 
