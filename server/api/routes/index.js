@@ -6,6 +6,7 @@ module.exports = (app) => {
     drink = require('../controllers/drinkController'),
     contact = require('../controllers/contactController'),
     hours = require('../controllers/hoursController'),
+    all = require('../controllers/allController'),
     jwt = require('express-jwt'),
     jwks = require('jwks-rsa'),
     jwtCheck = jwt({
@@ -18,6 +19,9 @@ module.exports = (app) => {
       audience: process.env.AUDIENCE_URI,
       algorithms: ['RS256']
     })
+  
+  app.route('/api/all')
+    .get(all.get_all)
 
   app.route('/api/foods')
     .get(food.get_food)
