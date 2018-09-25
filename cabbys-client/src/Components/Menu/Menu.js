@@ -17,12 +17,12 @@ export default class Menu extends Component {
 
   render() {
     let { selectedCat } = this.state
-    let { foods, drinks } = this.props
+    let { menu } = this.props
     return (
       <div className="menu-page-wrapper wrapper">
         <div className="menu-wrapper page-block">
-          <MenuCategory foods={foods} selectedCat={selectedCat} selectCat={this.selectCat}/>
-          <MenuContent list={selectedCat === 0 ? drinks : foods[selectedCat - 1]} />
+          <MenuCategory foods={menu.foods} selectedCat={selectedCat} selectCat={this.selectCat}/>
+          <MenuContent list={selectedCat === 0 ? menu.drinks : menu.foods[selectedCat - 1]} />
         </div>
       </div>
     )

@@ -14,7 +14,6 @@ export default class Hours extends Component {
     let sortedHours
 
     if (hours) {
-      hours = hours[0].hours
       sortedHours = this.sortHours(hours)
       return sortedHours
     }

@@ -10,35 +10,26 @@ class App extends Component {
     super(props)
     this.state = {
       data: {
-        foods: [],
-        drinks: [],
+        contact: {},
+        hours: {},
         events: [],
-        contact: []
+        menu: {
+          foods: [],
+          drinks: [],
+        }
       }
     }
   }
 
   async componentWillMount() {
-    let foods = await axios.get("./api/foods"),
-    drinks = await axios.get("./api/drinks"),
-    events = await axios.get("./api/events"),
-    contact = await axios.get("./api/contact"),
-    hours = await axios.get("./api/hours")
-
-    this.setState({
-      data: {
-        foods: foods.data,
-        drinks: drinks.data,
-        events: events.data,
-        contact: contact.data[0],
-        hours: hours.data
-      }
-    })
+    let all = await axios.get("http://localhost:8080/api/all")
+    
+    this.setState({data: all.data})
   }
 
   render() {
     let { location } = this.props
-    let { events, hours, foods, drinks, contact } = this.state.data
+    let { events, hours, menu, contact } = this.state.data
     return (
       <div>
         { GA.init() && <GA.RouteTracker />}
@@ -50,7 +41,7 @@ class App extends Component {
             classNames="fade">
             <Switch location={location}>
               <Route exact path="/" render={() => <HomePage hours={hours} />} />
-              <Route exact path="/menu" render={() => <Menu foods={foods} drinks={drinks}/>} /> 
+              <Route exact path="/menu" render={() => <Menu menu={menu} />} /> 
               <Route exact path="/events" render={() => <EventsPage events={events} />} />
               <Route exact path="/about" render={() => <About contact={contact} />} />
             </Switch>
