@@ -18,11 +18,11 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    let foods = await axios.get("../api/foods"),
-      drinks = await axios.get("../api/drinks"),
-      events = await axios.get("../api/events"),
-      contact = await axios.get("../api/contact"),
-      hours = await axios.get("../api/hours")
+    let foods = await axios.get("http://localhost:8080/api/foods"),
+      drinks = await axios.get("http://localhost:8080/api/drinks"),
+      events = await axios.get("http://localhost:8080/api/events"),
+      contact = await axios.get("http://localhost:8080/api/contact"),
+      hours = await axios.get("http://localhost:8080/api/hours")
 
     this.setState({
       ...this.state,
@@ -43,8 +43,8 @@ class App extends Component {
       <div className="container">
         <Switch>
           <Route exact path="/" render={() => <Admin hours={data.hours} contact={data.contact} />} />
-          <Route exact path="/login" component={Login} />
-          <Route path="" render={() => <Redirect to='/login' />} />
+          <Route exact path="/login/" component={Login} />
+          <Route path="" render={() => <Redirect to='/login/' />} />
         </Switch>
       </div>
     )
