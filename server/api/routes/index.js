@@ -47,6 +47,6 @@ module.exports = (app) => {
     .put(jwtCheck, contact.update_contact)
 
   app.route('/api/hours')
-    .get(jwtCheck, hours.get_hours)
+    .get(hours.get_hours)
     .put(jwtCheck, hours.set_hours)
 }
