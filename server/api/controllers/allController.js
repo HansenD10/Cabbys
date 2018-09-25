@@ -20,8 +20,16 @@ exports.get_all = async (req, res) => {
     res.send(e)
   }
   res.send({
-    contact: contact[0] || {},
-    hours: hours[0] || {},
+    contact: {
+      phone: contact[0].phone,
+      email: contact[0].email,
+      twitter: contact[0].twitter,
+      instagram: contact[0].instagram,
+      facebook: contact[0].facebook,
+      snapchat: contact[0].snapchat,
+      content: contact[0].content,
+    },
+    hours: hours[0].hours || {},
     events: events || [],
     menu: {
       foods: foods || [],
