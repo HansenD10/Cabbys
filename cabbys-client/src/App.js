@@ -22,7 +22,14 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    let all = await axios.get("./api/all")
+    let { pathname } = window.location
+    let all 
+
+    if (pathname !== '/')
+      all = await axios.get("../api/all")
+    else {
+      all = await axios.get("./api/all")
+    }
     
     this.setState({data: all.data})
   }
