@@ -4,6 +4,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   path = require('path'),
   cors = require('cors'),
+  dotenv = require('dotenv').config(),
   bodyParser = require('body-parser'),
   Food = require('./api/models/foodModel'),
   Events = require('./api/models/eventModel'),
@@ -14,7 +15,7 @@ const express = require('express'),
 
 //MongoDB Setup
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:27017/Cabbys')
+mongoose.connect(process.env.DB_URL)
   .catch(error => console.log(error))
 
 //Middleware

@@ -5,36 +5,48 @@ module.exports = (app) => {
     events = require('../controllers/eventController'),
     drink = require('../controllers/drinkController'),
     contact = require('../controllers/contactController'),
-    hours = require('../controllers/hoursController')
+    hours = require('../controllers/hoursController'),
+    jwt = require('express-jwt'),
+    jwks = require('jwks-rsa'),
+    jwtCheck = jwt({
+      secret: jwks.expressJwtSecret({
+          cache: true,
+          rateLimit: true,
+          jwksRequestsPerMinute: 5,
+          jwksUri: process.env.SECRET_URI
+      }),
+      audience: process.env.AUDIENCE_URI,
+      algorithms: ['RS256']
+    })
 
   app.route('/api/foods')
     .get(food.get_food)
-    .post(food.add_food_category)
-    .delete(food.delete_food_category)
+    .post(jwtCheck, food.add_food_category)
+    .delete(jwtCheck, food.delete_food_category)
   
   app.route('/api/drinks')
     .get(drink.get_drink)
-    .post(drink.add_drink_category)
-    .delete(drink.delete_drink_category)
+    .post(jwtCheck, drink.add_drink_category)
+    .delete(jwtCheck, drink.delete_drink_category)
 
   app.route('/api/foods/:id')
-    .post(food.add_item)
-    .delete(food.delete_item)
+    .post(jwtCheck, food.add_item)
+    .delete(jwtCheck, food.delete_item)
 
   app.route('/api/drinks/:id')
-    .post(drink.add_item)
-    .delete(drink.delete_item)
+    .post(jwtCheck, drink.add_item)
+    .delete(jwtCheck, drink.delete_item)
   
   app.route('/api/events')
     .get(events.get_events)
-    .post(events.add_event)
-    .delete(events.delete_event)
+    .post(jwtCheck, events.add_event)
+    .delete(jwtCheck, events.delete_event)
 
   app.route('/api/contact')
     .get(contact.get_contact)
-    .put(contact.update_contact)
+    .put(jwtCheck, contact.update_contact)
 
   app.route('/api/hours')
-    .get(hours.get_hours)
-    .put(hours.set_hours)
+    .get(jwtCheck, hours.get_hours)
+    .put(jwtCheck, hours.set_hours)
 }

@@ -7,6 +7,7 @@ import logo from '../Images/CabbysLogo.png'
 class Lock extends Component {
   lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
     auth: {
+      params: { audience: 'https://cabbysgrill.auth0.com/api/v2/' },
       responseType: 'token id_token',
       sso: false
     },
