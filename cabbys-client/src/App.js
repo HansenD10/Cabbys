@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    let all = await axios.get("http://localhost:8080/api/all")
+    let all = await axios.get("./api/all")
     
     this.setState({data: all.data})
   }
