@@ -14,11 +14,13 @@ export default class Admin extends Component {
 
   render() {
     let { contentPage } = this.state
+    let { hours, contact } = this.props
+
     if(isAuthenticated()) {
       return (
         <div>
           <Nav />
-          {contentPage === 'Basic' && this.props.hours && <Basic hours={this.props.hours.hours} contact={this.props.contact} />}
+          {contentPage === 'Basic' && hours && <Basic hours={hours} contact={contact} />}
         </div>
       )
     } 

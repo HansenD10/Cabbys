@@ -8,32 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {
-        foods: [],
-        drinks: [],
-        events: [],
-        contact: []
-      }
+      data: {}
     }
   }
 
   async componentWillMount() {
-    let foods = await axios.get("http://localhost:8080/api/foods"),
-      drinks = await axios.get("http://localhost:8080/api/drinks"),
-      events = await axios.get("http://localhost:8080/api/events"),
-      contact = await axios.get("http://localhost:8080/api/contact"),
-      hours = await axios.get("http://localhost:8080/api/hours")
-
-    this.setState({
-      ...this.state,
-      data: {
-        foods: foods.data,
-        drinks: drinks.data,
-        events: events.data,
-        contact: contact.data[0],
-        hours: hours.data[0]
-      }
-    })
+    let all = await axios.get('/api/all')
+    this.setState({data: all.data})
   }
 
   render() {
