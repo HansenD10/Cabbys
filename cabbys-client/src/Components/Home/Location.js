@@ -8,11 +8,11 @@ export default class Location extends Component {
     return (
       <div className="location-wrapper">
         <hr />
-        <h2 className="home-header">Location</h2>
+        <h3 className="home-header">Location</h3>
         <hr />
         <div className="location-content">
           <p>N10351 Howard Dr, Fox Lake, WI 53933</p>
-          <div style={{ height: "180px", width: "80%", margin: "0 auto" }}>
+          <div style={{ height: "180px", width: "90%", margin: "0 auto" }}>
             <GoogleMapReact
               bootstrapURLKeys={{ key: api }}
               zoom={13}

@@ -51,7 +51,7 @@ export default class Hours extends Component {
     return (
       <div className="hours-wrapper">
         <hr />
-        <h2 className="home-header">Hours</h2>
+        <h3 className="home-header">Hours</h3>
         <hr />
         <div className="hours-content">
           {sortedHours !== undefined && sortedHours.map((row) => {

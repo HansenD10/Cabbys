@@ -26,10 +26,16 @@ html, body, #root {
   color: white;
   max-width: 1000px;
   width: 80vw;
-  height: 70%;
+  height: 80%;
   background-color: rgba(0, 0, 0, 0.801);
-  margin: auto;
+  margin: 15vh auto 10vh;
   box-shadow:inset 0px 0px 0px 5px white;
+}
+
+@media screen and (max-width: 766px) {
+  .page-block {
+    height: 70%;
+  }
 }
 
 
