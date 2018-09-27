@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Nav, HomePage, About, EventsPage, Menu } from './Components'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 import GA from './Utils/GoogleAnalytics';
@@ -51,6 +51,7 @@ class App extends Component {
               <Route exact path="/menu" render={() => <Menu menu={menu} />} /> 
               <Route exact path="/events" render={() => <EventsPage events={events} />} />
               <Route exact path="/about" render={() => <About contact={contact} />} />
+              <Route path="*" render={() => <Redirect to="/" />} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
