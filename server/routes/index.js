@@ -11,6 +11,6 @@ module.exports = (app) => {
   app.use('/admin', express.static(path.join(__dirname, '/../build/admin')))
   
   // Client Routes 
-  app.use('/*', express.static(path.join(__dirname, '/../build/client')))
+  app.use('*', express.static(path.join(__dirname, '/../build/client')))
 
 }
