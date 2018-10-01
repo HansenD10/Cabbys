@@ -27,7 +27,7 @@ export default class MenuContent extends Component {
                     <div>
                       <p className="drink-name">{item.name}</p>
                       <p>{item.description}</p>
-                      <p>{item.price}</p>
+                      <p className="drink-price">{item.price}</p>
                     </div>
                   )
                 })}
