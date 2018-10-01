@@ -18,10 +18,19 @@ export default class MenuContent extends Component {
                 <h4>{item.price}</h4>
               </div>
             )}
-          ) : list.map((item) => {
+          ) : list.map((cat) => {
             return (
-              <div key={item._id} className="menu-content-items">
-                <h3>{item.category}</h3>
+              <div key={cat._id} className="menu-content-items">
+                <h3>{cat.category}</h3>
+                {cat.items.map((item) => {
+                  return (
+                    <div>
+                      <p className="drink-name">{item.name}</p>
+                      <p>{item.description}</p>
+                      <p>{item.price}</p>
+                    </div>
+                  )
+                })}
               </div>
             )
           })}
