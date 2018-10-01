@@ -38,11 +38,6 @@ html, body, #root {
   }
 }
 
-
-.contact-wrapper {
-  background-image: url('./Images/Contact\ \(2\).jpg');
-}
-
 .fade-enter {
   opacity: 0;
 }
