@@ -14,7 +14,7 @@ exports.get_all = async (req, res) => {
     contact = await Contact.find({})
     drinks = await Drinks.find({}),
     foods = await Foods.find({}),
-    events = await Events.find({}),
+    events = await Events.find({}, null, {sort: {date: 'asc'}}),
     hours = await Hours.find({})
   } catch(e) {
     res.send(e)
