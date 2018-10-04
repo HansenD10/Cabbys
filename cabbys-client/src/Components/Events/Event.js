@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 export default class Event extends Component {
   render() {
     let { event, selectEvent, deselectEvent, selected } = this.props
-    let eventDate = new Date(event.date)
-    let eventDay = eventDate.toLocaleDateString("dd", { day: "2-digit" })
-    let eventMonth = eventDate.toLocaleDateString("mmm", { month: "short" })
-    let eventStart = eventDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+    console.log(event.date)
+    let eventDate = new Date(event.date).toDateString()
+    let eventDay = event.date.slice(8,10)
+    let eventMonth = eventDate.slice(4,7)
 
     return (
       <div className="event-wrapper">
@@ -16,7 +16,7 @@ export default class Event extends Component {
         </div>
         <div className="event-info">
           <div className="event-info-header">
-            <h3 className="event-name-time">{event.name} at {eventStart}</h3>
+            <h3 className="event-name-time">{event.name} at {event.time}</h3>
           </div>
           <hr />
           {selected ?
