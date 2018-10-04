@@ -12,7 +12,7 @@ exports.get_hours = (req, res) => {
 }
 
 exports.set_hours = (req, res) => {
-  Hours.findOneAndUpdate({ v: "1"}, { $set: {hours: req.body.hours}}, (err, hours) => {
+  Hours.updateOne({ v: "1"}, { $set: {hours: req.body.hours}}, (err, hours) => {
     if (err)
       res.send(err)
     res.send(hours)
