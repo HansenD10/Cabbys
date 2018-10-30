@@ -22,7 +22,7 @@ export default class Hours extends Component {
   sortHours = (hours) => {
     let sortedHours = []
     let prevDay = 'Sunday'
-    let firstDay
+    let firstDay = 'Monday'
     let temp = {}
     _.forIn(hours, (value, key) => {
       if (hours[prevDay] !== value) {

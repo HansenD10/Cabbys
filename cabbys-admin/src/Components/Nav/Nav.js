@@ -5,12 +5,19 @@ export default class Nav extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selected: ''
+      selected: 'Basic'
     }
   }
 
+  changePage = (page) => {
+    this.setState({selected: page})
+    this.props.changePage(page)
+  }
 
   render() {
+    let { selected } = this.state
+    let { changePage } = this.props
+
     return (
       <div>
         <div className="drawer">
@@ -19,11 +26,14 @@ export default class Nav extends Component {
             <p>Cabby's Admin</p>
           </div>
           <div className="nav-links">
-            <p className="nav-link active">Basic</p>
+            <p onClick={this.changePage.bind(this, 'Basic')} 
+              className={`nav-link ${selected === 'Basic' ? 'active' : ''}`}>Basic</p>
             <hr className="divider" />
-            <p className="nav-link">Menu</p>
+            <p onClick={this.changePage.bind(this, 'Menu')} 
+              className={`nav-link ${selected === 'Menu' ? 'active' : ''}`}>Menu</p>
             <hr className="divider" />
-            <p className="nav-link">Events</p>
+            <p onClick={this.changePage.bind(this, 'Events')} 
+              className={`nav-link ${selected === 'Events' ? 'active' : ''}`}>Events</p>
           </div>
         </div>
       </div>

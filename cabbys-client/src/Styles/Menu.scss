@@ -1,5 +1,5 @@
 .menu-page-wrapper {
-  background-image: url('../Images/ribs.jpg');
+  background-image: url('../Images/Ribs.jpg');
   
   .menu-wrapper {
     display: flex;
@@ -97,8 +97,15 @@
         .menu-content-items {
           text-align: center;
           padding: 5px;
-          width: 40%;
+          width: 100%;
 
+          .drink-name {
+            font-weight: bold;
+          }
+
+          .drink-price {
+            font-weight: bold;
+          }
           @media screen and (max-width: 766px) {
             font-size: .8em;
             width: fit-content;
