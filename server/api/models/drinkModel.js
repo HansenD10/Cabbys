@@ -9,10 +9,11 @@ const Item = new Schema({
   },
   price: {
     type: String,
-    required: 'Please enter a price'
+    default: ''
   },
   description: {
-    type: String
+    type: String,
+    default: ''
   }
 }) 
 
