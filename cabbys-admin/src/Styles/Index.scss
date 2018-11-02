@@ -1,0 +1,11 @@
+@import '~antd/dist/antd.css';
+html,
+body,
+#root {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+.logo {
+    height: 50px;
+}

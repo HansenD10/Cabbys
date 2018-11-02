@@ -1,70 +1,73 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { AUTH_CONFIG } from './auth0-variables'
-import Auth0Lock from 'auth0-lock'
+import AUTH_CONFIG from './auth0-variables'
+import auth0 from 'auth0-js'
+import { Form, Input, Icon, Button, Divider } from 'antd'
 import logo from '../Images/CabbysLogo.png'
+import '../Styles/Login.css'
 
-class Lock extends Component {
-  lock = new Auth0Lock(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, {
-    auth: {
-      params: { audience: 'https://cabbysgrill.auth0.com/api/v2/' },
-      responseType: 'token id_token',
-      sso: false
-    },
-    container: AUTH_CONFIG.container,
-    theme: {
-      primaryColor: '#3a99d8',
-      logo
-    },
-    languageDictionary: {
-      title: "Cabby's Admin"
-    },
-    allowSignUp: false,
-    allowForgotPassword: false,
-    allowedConnections: ['Username-Password-Authentication']
-  })
+const FormItem = Form.Item
 
+export default class Lock extends Component {
+  
   constructor(props) {
     super(props)
-    this.state = {loggedIn: false}
-    this.onAuthenticated = this.onAuthenticated.bind(this)
-
-    this.onAuthenticated()
-  }
-
-  onAuthenticated() {
-    this.lock.on('authenticated', (authResult) => {
-        let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime())
-        localStorage.setItem('access_token', authResult.accessToken)
-        localStorage.setItem('id_token', authResult.idToken)
-        localStorage.setItem('expires_at', expiresAt)
-
-        this.setState({loggedIn: true})
+    console.log(AUTH_CONFIG)    
+    this.lock = new auth0.Authentication({
+      domain: AUTH_CONFIG.domain, 
+      clientID: AUTH_CONFIG.clientId
     })
   }
-  
-  componentDidMount() {
-    if (!(/access_token|id_token|error/.test(this.props.location.hash))) {
-      this.lock.show()
-    }
+
+  onAuthenticated(e) {
+    e.preventDefault()
+
+
+    this.lock.login({
+      realm: 'Username-Password-Authentication',
+      username: e.target.user.value,
+      password: e.target.pass.value,
+    }, (error, data) => {
+      if (error) {
+        console.log(error)
+      } 
+      else {
+        let expiresAt = JSON.stringify((data.expiresIn * 1000) + new Date().getTime())
+        localStorage.setItem('access_token', data.accessToken)
+        localStorage.setItem('id_token', data.idToken)
+        localStorage.setItem('expires_at', expiresAt)
+
+        setTimeout((() => this.props.logOut()), data.expiresIn)
+
+        this.props.logIn()
+      }
+    })
   }
 
   render() {
-    let { loggedIn } = this.state
-
     return (
-      !loggedIn ? (
-        <div className="login-wrapper">
-          <div id={AUTH_CONFIG.container}></div>
-        </div>
-      ) : (
-        <Redirect to={{
-          pathName:"/",
-          state: {from: this.props.location}
-        }} />
-      )
+      <Form onSubmit={this.onAuthenticated.bind(this)} className="login-form">
+        <img src={logo} alt="Cabbys Logo" />
+        <h1>Cabby's Admin</h1>
+        <Divider />
+        <FormItem>
+          <Input 
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} 
+            name="user"
+            placeholder="Username" />
+        </FormItem>
+        <FormItem>
+          <Input 
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} 
+            name="pass"
+            type="password" 
+            placeholder="Password" />
+        </FormItem>
+        <FormItem>
+          <Button type="primary" htmlType="submit" className="login-form-button">
+            Log in
+          </Button>
+        </FormItem>
+      </Form>
     )
   }
 }
-
-export default Lock

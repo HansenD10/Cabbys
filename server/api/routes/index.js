@@ -17,6 +17,7 @@ module.exports = (app) => {
           jwksUri: process.env.SECRET_URI
       }),
       audience: process.env.AUDIENCE_URI,
+      issuer: process.env.ISS_URI,
       algorithms: ['RS256']
     })
   
