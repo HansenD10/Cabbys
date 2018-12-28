@@ -34,6 +34,9 @@ module.exports = (app) => {
     .post(jwtCheck, drink.add_drink_category)
     .delete(jwtCheck, drink.delete_drink_category)
 
+  app.route('/api/menu')
+    .post(food.rewriteFoods)
+
   app.route('/api/foods/:id')
     .post(jwtCheck, food.add_item)
     .delete(jwtCheck, food.delete_item)

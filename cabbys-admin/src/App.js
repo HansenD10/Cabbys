@@ -1,81 +1,92 @@
-import React, { Component } from 'react'
-import { Layout } from 'antd'
-import isAuthenticated from './Auth/isAuthenticated'
-import NavHeader from './Components/NavHeader'
-import NavSidebar from './Components/NavSidebar'
-import Contact from './Components/Contact'
-import Lock from './Auth/Lock'
-import axios from 'axios'
+import React, { Component } from 'react';
+import { Layout } from 'antd';
+import NavHeader from './Components/NavHeader';
+import NavSidebar from './Components/NavSidebar';
+import Contact from './Components/Contact';
+import Lock from './Auth/Lock';
+import axios from 'axios';
 import Hours from './Components/Hours';
-import Menu from './Components/Menu'
+import Menu from './Components/Menu';
+import Events from './Components/Events';
 
-const { Content } = Layout;
-
-export default class App extends Component {  
+export default class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      content: "Login",
+      content: 'Login',
       data: {}
-    }
-    
-    this.logout = this.logout.bind(this)
+    };
+
+    this.updateData = this.updateData.bind(this);
+    this.checkToken = this.checkToken.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  checkToken() {
+    setTimeout(() => {this.logout()}, 3600000)
   }
 
   logout() {
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('id_token')
-    localStorage.removeItem('expires_at')
-
-    this.setState({ content: "Login" })
-  }
-  
-  async componentDidMount() {
-    isAuthenticated() && this.setState({ content: "Contact"})
+    console.log('Logout')
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('menu');
     
-    let all = await axios.get('/api/all')
-    this.setState({data: all.data})
-  }
-  
-  renderContent() {
-    let { contact, hours, menu } = this.state.data
 
-    switch(this.state.content) {
+    this.setState({ content: 'Login' });
+  }
+
+  async updateData() {
+    let all = await axios.get('/api/all');
+    this.setState({ data: all.data });
+  }
+
+  async componentDidMount() {
+    localStorage.getItem('expires_in') && this.setState({ content: 'Contact' });
+
+    let all = await axios.get('/api/all');
+    this.setState({ data: all.data });
+  }
+
+  renderContent() {
+    const { contact, hours, menu, events } = this.state.data;
+
+    switch (this.state.content) {
       case 'Login':
-        return <Lock 
-          style={{height: "100%"}} 
-          logIn={() => this.setState({content: 'Contact'})}
+        return <Lock
+          style={{ height: '100%' }}
+          logIn={() => this.setState({ content: 'Contact' })}
           logOut={this.logout} />
-      
+
       case 'Contact':
-        return contact && <Contact contact={contact} />
+        return contact && <Contact contact={contact} checkToken={this.checkToken} />
 
       case 'Hours':
         return hours && <Hours hours={hours} />
-      
+
       case 'Menu':
-        return menu && <Menu menu={menu} />
-      
+        return menu && <Menu menu={menu} updateData={this.updateData} />
+
+      case 'Events':
+        return events && <Events events={events} updateData={this.updateData} />
+
       default:
         break
     }
   }
 
   render() {
-    console.log("App refresh")
     return (
-      <Layout style={{height: "100%"}}>
-        <NavHeader 
+      <Layout style={{ height: "100%" }}>
+        <NavHeader
           loggedIn={this.state.content === "Login"}
-          logOut={this.logout}/>
+          logOut={this.logout} />
         <Layout>
-          <NavSidebar 
+          <NavSidebar
             loggedIn={this.state.content === "Login"}
-            changePage={(e) => this.setState({content: e.key})}/>
-          <Layout style={{ padding: '24px' }}>
-            <Content style={{ backgroundColor: 'white', display: 'flex', justifyContent: 'space-around' }}>
-              {this.renderContent()}
-            </Content>
+            changePage={(e) => this.setState({ content: e.key })} />
+          <Layout style={{ padding: '1.5rem' }}>
+            {this.renderContent()}
           </Layout>
         </Layout>
       </Layout>

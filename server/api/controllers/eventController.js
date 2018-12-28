@@ -12,6 +12,7 @@ exports.get_events = (req, res) => {
 }
 
 exports.add_event = (req, res) => {
+  console.log(req.body)
   let new_event = new Events(req.body)
   new_event.save((err, events) => {
     if (err)
@@ -21,7 +22,7 @@ exports.add_event = (req, res) => {
 }
 
 exports.delete_event = (req, res) => {
-  Events.remove({ _id: req.body.id }, (err, event) => {
+  Events.deleteOne({ _id: req.body.id }, (err, event) => {
     if (err)
       res.send(err)
     res.json({ message: 'Event successfully deleted' })
