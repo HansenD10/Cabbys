@@ -1,30 +1,26 @@
-import React, { Component } from 'react'
-import { Row, Col, Button } from 'antd';
+import React, { Component } from 'react';
+import { Row, Button } from 'antd';
 
 export default class CtrlBtnGroup extends Component {
   render() {
-    let { isHidden, reset, update } = this.props
+    const { isHidden, reset, update, header } = this.props;
 
-    const hide = {display: isHidden ? '' : 'none', height: "10%", justifyContent: "space-evenly"}
+    const hide = { visibility: isHidden ? 'visible' : 'hidden', margin: 'auto 0' }
+
     return (
-      <Row 
-        style={hide}>
-        <Col 
-          style={{ display: "flex", justifyContent: "space-evenly"}}
-          span="12">
-          <Button 
-            type="primary"
-            onClick={update}
-            >Update</Button>
-        </Col>
-        <Col 
-          style={{ display: "flex", justifyContent: "space-evenly"}}
-          span="12">      
-          <Button 
-            type="danger"
-            onClick={reset}
-            >Reset</Button>
-        </Col>
+      <Row
+        style={{ display: 'flex', justifyContent: 'space-evenly', height: '100px' }}>
+        <Button
+          style={hide}
+          type="primary"
+          onClick={update}
+        >Update</Button>
+        <h1 style={{ textAlign: 'center', margin: 'auto 0' }}>{header}</h1>
+        <Button
+          style={hide}
+          type="danger"
+          onClick={reset}
+        >Reset</Button>
       </Row>
     )
   }

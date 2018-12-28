@@ -12,6 +12,20 @@ exports.get_food = (req, res) => {
   })
 }
 
+//Rewrite Foods
+exports.rewriteFoods = (req, res) => {
+  Food.deleteMany({}, (err) => {
+    if (!err) {
+      Food.insertMany(req.body.foods, (err, docs) => {
+        if (err)
+          throw err;
+        res.status(201)
+        res.send()
+      })
+    }
+  })
+}
+
 //Add a Menu category
 exports.add_food_category = (req, res) => {
   let new_food_cat = new Food(req.body)

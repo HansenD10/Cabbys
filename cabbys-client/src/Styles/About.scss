@@ -60,6 +60,10 @@
 .contact-text {
   text-align: center;
   height: 70%;
+  
+  @media screen and (max-width: 766px) {
+    overflow-y: scroll;
+  }
 }
 
 .contact-text h1 {
