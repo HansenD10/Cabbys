@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Nav, HomePage, About, EventsPage, Menu } from './Components'
+import { Loading, Nav, HomePage, About, EventsPage, Menu } from './Components'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import axios from 'axios'
@@ -13,10 +13,7 @@ class App extends Component {
         contact: {},
         hours: {},
         events: [],
-        menu: {
-          foods: [],
-          drinks: [],
-        }
+        foods: [],
       }
     }
   }
@@ -33,24 +30,23 @@ class App extends Component {
     
     this.setState({data: all.data})
   }
-
   render() {
     let { location } = this.props
-    let { events, hours, menu, contact } = this.state.data
+    let { events, hours, foods, contact } = this.state.data
     return (
       <div>
         { GA.init() && <GA.RouteTracker />}
         <Nav updateSelected={this.updateSelected} />
         <TransitionGroup>
           <CSSTransition
-            key={location.key}
-            timeout={200}
+            key={window.location.pathname}
+            timeout={1000}
             classNames="fade">
             <Switch location={location}>
-              <Route exact path="/" render={() => <HomePage hours={hours} />} />
-              <Route exact path="/menu" render={() => <Menu menu={menu} />} /> 
-              <Route exact path="/events" render={() => <EventsPage events={events} />} />
-              <Route exact path="/about" render={() => <About contact={contact} />} />
+              <Route exact path="/" render={() => hours ? <HomePage hours={hours} /> : <Loading />} />
+              <Route exact path="/menu" render={() => foods[0] ? <Menu foods={foods} /> : <Loading />} /> 
+              <Route exact path="/events" render={() => events && <EventsPage events={events} />} />
+              <Route exact path="/about" render={() => contact ? <About contact={contact} /> : <Loading />} />
               <Route path="*" render={() => <Redirect to="/" />} />
             </Switch>
           </CSSTransition>

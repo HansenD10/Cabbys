@@ -6,7 +6,7 @@ export default class MenuContent extends Component {
     return (
       <div className="menu-content-wrapper">
         <div className="menu-content-header">
-          <h3>{list.category ? list.category : 'Drinks'}</h3>
+          <h3>{list.category}</h3>
           <hr className="divider"/>
         </div>
         <div className="menu-items-list">

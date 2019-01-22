@@ -11,12 +11,6 @@ export default class MenuCategory extends Component {
 
     return (
       <div className="menu-cat-wrapper">
-        <div 
-          onClick={this.selectCat.bind(this, 0)}
-          key={0} 
-          className={`category-wrapper ${selectedCat === 0 ? 'active-cat' : ''}`}>
-          <p className="category-text">Drinks</p>
-        </div>
         {this.props.foods.map((food, i) => {
           return (
             <div 
