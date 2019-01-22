@@ -8,7 +8,6 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   Food = require('./api/models/foodModel'),
   Events = require('./api/models/eventModel'),
-  Drink = require('./api/models/drinkModel'),
   Contact = require('./api/models/contactModel'),
   Hours = require('./api/models/hoursModel'),
   routes = require('./routes')

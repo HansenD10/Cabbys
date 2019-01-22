@@ -3,7 +3,6 @@
 module.exports = (app) => {
   let food = require('../controllers/foodController'),
     events = require('../controllers/eventController'),
-    drink = require('../controllers/drinkController'),
     contact = require('../controllers/contactController'),
     hours = require('../controllers/hoursController'),
     all = require('../controllers/allController'),
@@ -28,22 +27,10 @@ module.exports = (app) => {
     .get(food.get_food)
     .post(jwtCheck, food.add_food_category)
     .delete(jwtCheck, food.delete_food_category)
-  
-  app.route('/api/drinks')
-    .get(drink.get_drink)
-    .post(jwtCheck, drink.add_drink_category)
-    .delete(jwtCheck, drink.delete_drink_category)
-
-  app.route('/api/menu')
-    .post(food.rewriteFoods)
 
   app.route('/api/foods/:id')
     .post(jwtCheck, food.add_item)
     .delete(jwtCheck, food.delete_item)
-
-  app.route('/api/drinks/:id')
-    .post(jwtCheck, drink.add_item)
-    .delete(jwtCheck, drink.delete_item)
   
   app.route('/api/events')
     .get(events.get_events)
