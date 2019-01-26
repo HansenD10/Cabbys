@@ -6,9 +6,15 @@ let apiRoutes = require('../api/routes'),
 module.exports = (app) => {
   apiRoutes(app)
 
+  app.use((req, res, next) => {
+    res.header("Content-Security-Policy", "default-src https://www.google-analytics.com https://*.gstatic.com https://*.googleapis.com 'self' data: 'unsafe-inline';");
+    res.header("X-XSS-Protection", "1; mode=block");
+    res.header("X-Content-Type-Options", "nosniff");
+    res.header("Referer-Policy", "same-origin");
+    next()
+  })
   // Admin Routes
   app.use('/admin', express.static(path.join(__dirname, '/../build/admin')))
-  app.use('/admin/login', express.static(path.join(__dirname, '/../build/admin')))
   
   // Client Routes 
   app.use(express.static(path.join(__dirname, '/../build/client')))

@@ -30,13 +30,13 @@ export default class MenuItem extends Component {
     return (
       <Row
         type='flex'
-        justify='space-around'>
+        justify='flex-start'>
         {foods && foods.items.map(food => {
           return (
             <Col
               key={food.name}
-              style={{ padding: '10px' }}
-              span={7}>
+              style={{ padding: '1rem' }}
+              span={8}>
               <Card
                 style={{ height: '300px', display: 'flex', flexDirection: 'column' }}
                 title={`${food.name}  -  ${food.price}`}
@@ -49,7 +49,7 @@ export default class MenuItem extends Component {
         }
         )}
         <Col
-          style={{ padding: "10px" }}
+          style={{ padding: "1rem" }}
           span={8}>
           <Card
             style={{

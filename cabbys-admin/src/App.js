@@ -49,7 +49,7 @@ export default class App extends Component {
   }
 
   renderContent() {
-    const { contact, hours, menu, events } = this.state.data;
+    const { contact, hours, foods, events } = this.state.data;
 
     switch (this.state.content) {
       case 'Login':
@@ -65,7 +65,7 @@ export default class App extends Component {
         return hours && <Hours hours={hours} />
 
       case 'Menu':
-        return menu && <Menu menu={menu} updateData={this.updateData} />
+        return foods && <Menu foods={foods} updateData={this.updateData} />
 
       case 'Events':
         return events && <Events events={events} updateData={this.updateData} />

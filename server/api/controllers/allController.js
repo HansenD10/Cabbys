@@ -26,7 +26,7 @@ exports.get_all = async (req, res) => {
       instagram: contact[0].instagram,
       facebook: contact[0].facebook,
       snapchat: contact[0].snapchat,
-      content: contact[0].content,
+      content: contact[0].content
     },
     hours: hours[0].hours || {},
     events: events || [],

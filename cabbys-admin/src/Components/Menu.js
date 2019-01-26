@@ -9,7 +9,7 @@ import MenuItem from './MenuItem';
 export default class Menu extends Component {
   constructor(props) {
     super(props)
-    const foods = [...props.menu.foods]
+    const foods = [...props.foods]
     this.state = {
       foods,
       categories: foods.map(food => food.category),
@@ -154,7 +154,7 @@ export default class Menu extends Component {
         />
         <Divider />
         <MenuItem
-          foods={foods.find(food => food.category === selectedCat)}
+          foods={foods && foods.find(food => food.category === selectedCat)}
           itemChange={this.itemChange}
           categoryChange={this.categoryChange} 
         />
