@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
-import EventList from './EventList'
-import '../../Styles/Events.css'
+import React, { Component } from 'react';
+import EventList from './EventList';
+import '../../Styles/Events.scss';
 
 export default class Events extends Component {
   render() {
-    let { events } = this.props
+    const { events } = this.props;
+
     return (
       <div className="events-wrapper wrapper">
-        <EventList events={events}/>
+        <EventList events={events} />
       </div>
-    )
+    );
   }
 }

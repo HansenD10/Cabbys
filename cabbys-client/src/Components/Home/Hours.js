@@ -1,52 +1,48 @@
-import React, { Component } from 'react'
-import _ from 'lodash'
+import React, { Component } from 'react';
+import _ from 'lodash';
 
 export default class Hours extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       sortedHours: []
-    }
+    };
   }
 
   setHours = () => {
-    let { hours } = this.props
-    let sortedHours
-
-    if (hours) {
-      sortedHours = this.sortHours(hours)
-      return sortedHours
-    }
+    return this.props.hours
+      ? this.sortHours(this.props.hours)
+      : null;
   }
 
   sortHours = (hours) => {
-    let sortedHours = []
-    let prevDay = 'Sunday'
-    let firstDay = 'Monday'
-    let temp = {}
+    let sortedHours = [];
+    let prevDay = 'Sunday';
+    let firstDay = 'Monday';
+    let temp = {};
     _.forIn(hours, (value, key) => {
       if (hours[prevDay] !== value) {
-        if(_.isEmpty(temp)) {
-          temp = {day: key, time: value}
-          firstDay = key
+        if (_.isEmpty(temp)) {
+          temp = { day: key, time: value };
+          firstDay = key;
         }
         else {
-          sortedHours.push(temp)
-          firstDay = key
-          temp = {day: key, time: value}
+          sortedHours.push(temp);
+          firstDay = key;
+          temp = { day: key, time: value };
         }
       }
       else {
-        temp = { day: firstDay + ' - ' + key, time: value }
+        temp = { day: firstDay + ' - ' + key, time: value };
       }
-      prevDay = key
-    })
-    sortedHours.push(temp)
-    return sortedHours
+      prevDay = key;
+    });
+    sortedHours.push(temp);
+    return sortedHours;
   }
 
   render() {
-    let sortedHours = this.setHours()
+    const sortedHours = this.setHours();
 
     return (
       <div className="hours-wrapper">
@@ -61,6 +57,6 @@ export default class Hours extends Component {
           })}
         </div>
       </div>
-    )
+    );
   }
 }

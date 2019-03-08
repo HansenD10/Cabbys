@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../Styles/Toggle.css'
+import '../../Styles/Toggle.scss'
 
 export default class Toggle extends Component {
   render() {

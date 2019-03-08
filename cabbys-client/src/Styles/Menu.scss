@@ -1,5 +1,6 @@
 .menu-page-wrapper {
-  
+  background-image: url('../Images/Ribs.webp');
+
   .menu-wrapper {
     display: flex;
     justify-content: space-between;
@@ -69,7 +70,7 @@
         
         &::before {
           content: '';
-          background-image: url('../Images/CabbysLogo.png');
+          background-image: url('../Images/CabbysLogo.webp');
           background-size: contain;
           display: block;
           height: 100px;

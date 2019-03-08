@@ -1,5 +1,6 @@
 
 .home-wrapper {
+  background-image: url("../Images/Home.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -8,7 +9,7 @@
     display: flex;
     
     .home-logo {
-      background-image: url('../Images/CabbysLogo.png');
+      background-image: url('../Images/CabbysLogo.webp');
       width: 50%;
       height: 100%;
       background-position: center;
@@ -16,13 +17,14 @@
       background-repeat: no-repeat;
 
       @media screen and (max-width: 766px) {
-        height: 200px;
+        min-height: 200px;
+        width: 100%;
       }
     }
   }
   
   .location-icon {
-    background-image: url('../Images/Location.png');
+    background-image: url('../Images/Location.webp');
     background-size: contain;
     display: none;
     background-repeat: no-repeat;
@@ -39,7 +41,7 @@
   }
   
   .phone-icon {
-    background-image: url('../Images/Phone.png');
+    background-image: url('../Images/Phone.webp');
     background-size: contain;
     display: none;
     background-repeat: no-repeat;

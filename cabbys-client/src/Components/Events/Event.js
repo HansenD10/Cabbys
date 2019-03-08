@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Event extends Component {
   render() {
-    let { event, selectEvent, deselectEvent, selected } = this.props
-    console.log(event.date)
-    let eventDate = new Date(event.date).toDateString()
-    let eventDay = event.date.slice(8,10)
-    let eventMonth = eventDate.slice(4,7)
+    const { event, selectEvent, deselectEvent, selected } = this.props;
+    const eventDate = new Date(event.date).toDateString();
+    const eventDay = event.date.slice(8, 10);
+    const eventMonth = eventDate.slice(4, 7);
 
     return (
       <div className="event-wrapper">
@@ -28,6 +27,6 @@ export default class Event extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

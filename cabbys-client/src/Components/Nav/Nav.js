@@ -1,24 +1,27 @@
-import React, { Component } from 'react'
-import Toggle from './Toggle'
-import { NavLink } from 'react-router-dom'
-import '../../Styles/Nav.css'
+import React, { Component } from 'react';
+import Toggle from './Toggle';
+import { NavLink } from 'react-router-dom';
+import '../../Styles/Nav.scss';
 
 export default class Nav extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       toggle: false
-    }
+    };
+
+    this.selectToggle = this.selectToggle.bind(this);
   }
 
-  selectToggle = () => {
+  selectToggle() {
     this.setState({
       toggle: !this.state.toggle
-    })
+    });
   }
   
   render() {
-    let { toggle } = this.state
+    const { toggle } = this.state;
+
     return (
       <div className="nav-wrapper">
         <div className="nav-links">
@@ -39,6 +42,6 @@ export default class Nav extends Component {
         </div>
         <Toggle selectToggle={this.selectToggle} toggle={toggle} />
       </div>
-    )
+    );
   }
 }

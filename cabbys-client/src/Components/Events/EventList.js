@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import Event from './Event'
+import React, { Component } from 'react';
+import Event from './Event';
 
 export default class EventList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       selectedEvent: ''
-    }
+    };
   }
 
   selectEvent = (id) => {
-    this.setState({ selectedEvent: id })
+    this.setState({ selectedEvent: id });
   }
 
   deselectEvent = () => {
-    this.setState({ selectedEvent: '' })
+    this.setState({ selectedEvent: '' });
   }
 
   checkSelected = (id) => {
@@ -26,7 +26,7 @@ export default class EventList extends Component {
 
 
   render() {
-    let { events } = this.props
+    const { events } = this.props;
 
     return (
       <div className="event-list-wrapper page-block">
@@ -35,23 +35,24 @@ export default class EventList extends Component {
           <hr />
         </div>
         <div className="events-list">
-          {events.length ? events.map((event, i) => {
-            while (i < 2) {
-              return (
-                <Event
-                  selectEvent={this.selectEvent.bind(this, event._id)}
-                  deselectEvent={this.deselectEvent}
-                  event={event}
-                  selected={this.checkSelected(event._id)}
-                  key={event._id} />
-              )
-            }
-            return null
-          }) :
-          <h1 className="no-events">No Upcoming Events</h1>
-        }
+          {
+            events.length ? events.map((event, i) => {
+              while (i < 2) {
+                return (
+                  <Event
+                    selectEvent={this.selectEvent.bind(this, event._id)}
+                    deselectEvent={this.deselectEvent}
+                    event={event}
+                    selected={this.checkSelected(event._id)}
+                    key={event._id} />
+                );
+              }
+              return null;
+            }) :
+              <h1 className="no-events">No Upcoming Events</h1>
+          }
         </div>
       </div>
-    )
+    );
   }
 }

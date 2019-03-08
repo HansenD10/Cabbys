@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class MenuContent extends Component {
   render() {
-    let { list } = this.props
+    const { list } = this.props;
+
     return (
       <div className="menu-content-wrapper">
         <div className="menu-content-header">
           <h3>{list.category}</h3>
-          <hr className="divider"/>
+          <hr className="divider" />
         </div>
         <div className="menu-items-list">
           {list.items ? list.items.map((item) => {
@@ -17,7 +18,8 @@ export default class MenuContent extends Component {
                 <p>{item.description}</p>
                 <h4>{item.price}</h4>
               </div>
-            )}
+            )
+          }
           ) : list.map((cat) => {
             return (
               <div key={cat._id} className="menu-content-items">
@@ -29,13 +31,13 @@ export default class MenuContent extends Component {
                       <p>{item.description}</p>
                       <p className="drink-price">{item.price}</p>
                     </div>
-                  )
+                  );
                 })}
               </div>
-            )
+            );
           })}
         </div>
       </div>
-    )
+    );
   }
 }

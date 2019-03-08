@@ -10,7 +10,7 @@
 
 
 .contact-wrapper {
-  background-image: url('../Images/About.jpg');
+  background-image: url('../Images/About.webp');
 }
 
 .social-media-icons {
@@ -58,6 +58,7 @@
 }
 
 .contact-text {
+  padding: 0 1rem;
   text-align: center;
   height: 70%;
   
@@ -69,7 +70,6 @@
 .contact-text h1 {
   letter-spacing: 3px;
   text-align: center;
-  text-transform: uppercase;
   margin: 0;
   
   @media screen and (max-width: 766px) {

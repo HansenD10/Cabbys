@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react/lib'
-import Marker from './Marker'
+import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react/lib';
+import Marker from './Marker';
 
 export default class Location extends Component {
   render() {
-    let api = "AIzaSyDboRjmNpFJYKaOqUjI9zELBkIXAYYTiGQ"
+    const api = "AIzaSyDboRjmNpFJYKaOqUjI9zELBkIXAYYTiGQ";
+
     return (
       <div className="location-wrapper">
         <hr />
@@ -23,6 +24,6 @@ export default class Location extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

@@ -4,7 +4,6 @@
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.623);
   z-index: 100;
-  height: 10%;
   justify-content: space-evenly;
   
   .nav-links {
@@ -20,8 +19,10 @@
       transition: all 300ms ease-in;
       user-select: none;
       font-size: 1.5em;
-      margin: auto 0;
-      text-transform: uppercase;
+      margin: 1rem auto;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
       
       &:hover {
         opacity: .7;
@@ -67,7 +68,7 @@
       top: -100vh;
       width: 100vw;
       height: 100vh;
-      transition: top 1s ease-in;
+      transition: top 500ms ease-in;
     
       .menu-divider {
         width: 80vw;
@@ -75,7 +76,7 @@
       }
     
       .dropdown-logo {
-        background-image: url("../Images/CabbysLogo.png");
+        background-image: url("../Images/CabbysLogo.webp");
         height: 90vw;
         width: 90vw;
         margin: 10vh auto 0 auto;
@@ -90,7 +91,7 @@
       width: 100vw;
       height: 100vh;
       top: 0;
-      transition: top 1s ease-out;
+      transition: top 500ms ease-in-out;
     }
     
       .dropdown-links {

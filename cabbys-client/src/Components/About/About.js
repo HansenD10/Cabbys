@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import '../../Styles/About.css'
+import React, { Component } from 'react';
+import '../../Styles/About.scss';
 
 export default class About extends Component {
   render() {
-    let { contact: { content, phone, facebook, instagram, twitter } } = this.props
+    let { contact: { content, phone, facebook, instagram, twitter } } = this.props;
 
     return (
       <div className="contact-wrapper wrapper">
@@ -21,6 +21,6 @@ export default class About extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
