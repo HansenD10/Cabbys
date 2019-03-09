@@ -59,13 +59,13 @@ export default class NewEvent extends Component {
 						<TimePicker
 							value={moment(time, 'h:mm A')}
 							format="h:mm A"
-							onChange={(e) => {
-								this.setState = {
+							onChange={(e, s) => {
+								this.setState({
 									form: {
 										...this.state.form,
-										time: e._i
+										time: s
 									}
-								}
+								})
 							}}
 							minuteStep={15}
 							use12Hours={true} />

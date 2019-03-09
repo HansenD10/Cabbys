@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AUTH_CONFIG from './auth0-variables';
 import auth0 from 'auth0-js';
 import { Layout, Form, Row, Input, Icon, Button, Divider } from 'antd';
-import logo from '../Images/CabbysLogo.png';
+import logo from '../Images/CabbysLogo.webp';
 import '../Styles/Login.css';
 
 const FormItem = Form.Item;

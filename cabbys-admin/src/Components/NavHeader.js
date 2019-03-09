@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'antd';
-import logo from '../Images/CabbysLogo.png';
+import logo from '../Images/CabbysLogo.webp';
 
 export default class NavHeader extends Component {
   render() {
