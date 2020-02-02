@@ -1,0 +1,34 @@
+﻿@import '_variables.scss';
+
+.gallery-wrapper {
+	padding: 6rem 0;
+	width: 100%;
+	display: flex;
+
+
+	.image-row {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: auto;
+
+		.image-wrapper {
+			transition: all 200ms ease-in;
+			cursor: pointer;
+			padding: .5rem;
+			display: block;
+			margin: auto 0;
+
+			img {
+				transition: all 200ms ease-in;
+				box-shadow: $global-shadow;
+				width: 100%;
+
+				&:hover {
+					transform: scale(1.05);
+					box-shadow: $global-shadow-hover;
+				}
+			}
+		}
+	}
+}

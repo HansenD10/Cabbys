@@ -1,0 +1,23 @@
+import React from "react"
+import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps"
+
+const GoogleMapComponent = withScriptjs(withGoogleMap((props) => 
+  <GoogleMap
+    center={{ lat: 43.569134, lng: -88.943925 }}
+    zoom={15}
+    clickableIcons={false}
+    disableDefaultUI 
+    defaultOptions={{
+      streetViewControl: false,
+      scaleControl: false,
+      mapTypeControl: false,
+      panControl: false,
+      zoomControl: false,
+      rotateControl: false,
+      fullscreenControl: false
+    }} 
+  >
+  </GoogleMap>
+))
+
+export default GoogleMapComponent

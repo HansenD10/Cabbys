@@ -1,0 +1,72 @@
+﻿@import '_variables.scss';
+
+.events-wrapper {
+	min-width: 100%;
+	background-color: $primary_background;
+	box-shadow: $global-dark-shadow;
+
+	.events-list {
+		padding: 6rem 0;
+		display: flex;
+		overflow-x: auto;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		.event-card {
+			padding: 1rem;
+			margin: auto;
+			width: 400px;
+			text-align: center;
+			flex: 0 0 auto;
+			user-select: none;
+
+			&::before,
+			&::after {
+				content: '';
+			}
+
+			@media(max-width: 767px) {
+				width: 300px;
+			}
+
+			.header-image {
+				height: 300px;
+				overflow: hidden;
+				position: relative;
+				border-top-left-radius: 1rem;
+				border-top-right-radius: 1rem;
+
+				@media(max-width: 767px) {
+					height: 200px;
+				}
+
+				img {
+					position: absolute;
+					min-width: 100%;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
+
+			.card-details {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				border-bottom-left-radius: 1rem;
+				border-bottom-right-radius: 1rem;
+				padding: 2rem;
+				background-color: white;
+				height: 300px;
+			}
+		}
+	}
+
+	.error {
+		font-weight: bold;
+		font-size: 24px;
+		color: white;
+	}
+}

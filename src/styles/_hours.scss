@@ -1,0 +1,46 @@
+﻿@import '_variables.scss';
+
+.hours-container {
+	padding: 6rem 0;
+	color: white;
+	background-color: $primary_background;
+	box-shadow: $global-dark-shadow;
+
+	.hours-content {
+		display: flex;
+		flex-direction: column;
+
+		h4 {
+			text-align: center;
+			margin: 2rem 0; 
+			font-weight: bold;
+			font-size: 20px;
+
+			@media (max-width: 767px) {
+				font-size: 14px;
+			}
+		}
+
+
+		.hours {
+			margin: auto;
+
+			hr {
+				background-color: #ffffffa0;
+				border-width: 2px;
+				width: 25%;
+			}
+
+			p {
+				font-size: 18px;
+				text-align: center;
+				margin: 0;
+				color: #ffffffa0;
+
+				@media (max-width: 767px) {
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}
