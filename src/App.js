@@ -30,7 +30,7 @@ export default class App extends Component {
             <HomePage backgroundImage={this.state.homepage.backgroundImage} />
             <Hours hours={this.state.hours} />
             <Menu menu={this.state.menu} />
-            <Events events={this.state.events} />
+            <Events events={this.state.eventList} links={this.state.about.socialMediaLinks} />
             <Gallery gallery={this.state.gallery} />
             <About about={this.state.about} />
         </React.Fragment>

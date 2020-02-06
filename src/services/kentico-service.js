@@ -1,5 +1,4 @@
 import { DeliveryClient } from '@kentico/kontent-delivery';
-// import BasePage from '../models/BasePage';
 
 export default class KenticoService {
   constructor() {
@@ -7,22 +6,28 @@ export default class KenticoService {
   }
 
   mapData = (data) => {
-    return {
-      nav: this.getNavigation(data.firstItem.navigation.value),
-      homepage: this.getHomePage(data.firstItem.home_page.value[0]),
-      hours: this.getHours(data.items[0].hours.value),
-      menu: this.getMenu(data.items[0].menu.value[0]),
-      events: this.getEvents(data.items[0].events.value[0]),
-      gallery: this.getGallery(data.items[0].gallery.value[0]),
-      about: this.getAbout(data.items[0].about.value[0])
-    }
+    let nav = this.getNavigation(data.firstItem.navigation.value);
+    let homepage = this.getHomePage(data.firstItem.home_page.value[0]);
+    let hours = this.getHours(data.items[0].hours.value);
+    let menu = this.getMenu(data.items[0].menu.value[0]);
+    let eventList = this.getEvents(data.items[0].events.value[0]);
+    let gallery = this.getGallery(data.items[0].gallery.value[0]);
+    let about = this.getAbout(data.items[0].about.value[0]);
+
+    return { nav, homepage, hours, menu, eventList, gallery, about }
   }
 
   getAbout = (about) => {
     return {
       bio: about.bio.value,
       email: about.email.value,
-      phoneNumber: about.phone_number.value
+      phoneNumber: about.phone_number.value,
+      socialMediaLinks: about.social_media_links.value.map(link => {
+        return {
+          link: link.link.value,
+          linkIcon: link.icon.value[0].url
+        }
+      })
     }
   }
   

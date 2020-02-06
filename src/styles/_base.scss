@@ -29,32 +29,30 @@ picture:not(#logo) {
 
 .social-media-wrapper {
 	display: flex;
-	justify-content: space-around;
+	margin: 1rem auto;
+	justify-content: center;
 	padding: 2rem;
+}
 
-	.icon {
-		width: 50px;
-		height: 50px;
-		background-size: contain;
-		background-repeat: no-repeat;
-		user-select: none;
-		transition: all 300ms ease;
+.social-media-wrapper-events {
+	display: flex;
+	margin: 1rem auto;
+}
 
-		&.facebook {
-			background-image: url("../images/facebook.png");
-		}
+.icon {
+	width: 60px;
+	height: 60px;
+	padding: 5px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	user-select: none;
+	transition: all 300ms ease;
+	margin: 2rem;
 
-		&.instagram {
-			background-image: url("../images/instagram.png");
-		}
-
-		&.twitter {
-			background-image: url("../images/twitter.png");
-		}
-
-		&:hover {
-			transform: scale(1.2);
-		}
+	&:hover {
+		transform: scale(1.2);
+		background-color: white;
+		border-radius: 75%;
 	}
 }
 

@@ -64,9 +64,21 @@
 		}
 	}
 
-	.error {
-		font-weight: bold;
-		font-size: 24px;
-		color: white;
+	.error-wrapper {
+		height: 600px;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		flex-direction: column;
+
+		.error {
+			* {
+				text-align: center;
+				align-self: center;
+				font-weight: bold;
+				font-size: 24px;
+				color: white;
+			}
+		}
 	}
 }

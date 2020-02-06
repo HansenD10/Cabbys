@@ -1,3 +1,3 @@
 export const transformImage = (imageUrl, width, height) => {
-  return `${imageUrl}?w=${width}&h=${height}&fm=auto`;
+  return `${imageUrl}?w=${width}&h=${height}&fm=webp`;
 }
