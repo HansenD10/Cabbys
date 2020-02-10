@@ -4,8 +4,13 @@ import { Element } from "react-scroll"
 import "../styles/_home.scss"
 
 import { transformImage } from "../services/image-service"
+import { Asset } from "../models/KenticoModels";
 
-const HomePage = ({ backgroundImage }) => (
+interface HomeProps {
+  backgroundImage: Asset
+}
+
+const HomePage: React.SFC<HomeProps> = ({ backgroundImage }: HomeProps) => (
   <Element id="home" name="home" className="full-block-wrapper">
     <div className="dark-overlay"></div>
     <div className="background-image-wrapper">

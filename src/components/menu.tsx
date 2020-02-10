@@ -2,20 +2,29 @@ import React, { Component } from "react"
 import { Element } from "react-scroll"
 
 import "../styles/_menu.scss"
+import { MenuCategory } from "../models/KenticoModels";
 
-export default class Menu extends Component {
-  constructor(props) {
+interface MenuProps {
+  menu: MenuCategory[]
+}
+
+interface MenuState {
+  isActive: string
+}
+
+export default class Menu extends Component<MenuProps, MenuState> {
+  constructor(props: MenuProps) {
     super(props);
     this.state = {
-      isActive: Object.keys(props.menu)[0] || ""
+      isActive: props.menu[0].category || ""
     }
   }
 
-  handleCategoryClick(category) {
+  handleCategoryClick(category: string): void {
     this.setState({ isActive: category })
   }
   
-  render() {
+  render(): React.ReactNode {
     const { menu } = this.props;
     const { isActive } = this.state;
     
@@ -24,21 +33,21 @@ export default class Menu extends Component {
         <div className="row">
           <div className="col-md-4 menu-sidebar">
             <h2>Categories</h2>
-            {Object.keys(menu).map(key => {
+            {menu.map(category => {
               return (
                 <h4 
-                  key={key} 
-                  className={isActive === key ? 'active-category' : ''}
-                  onClick={() => this.handleCategoryClick(key)}
-                  >{key}</h4>
+                  key={category.category} 
+                  className={isActive === category.category ? 'active-category' : ''}
+                  onClick={() => this.handleCategoryClick(category.category)}
+                  >{category.category}</h4>
               )
             })}
           </div> 
           <div className="col-md-8 menu-display-wrapper">
-            {Object.keys(menu).map(key => {
+            {menu.map(category => {
               return (
-                <div key={key} className={'menu-list ' + (isActive === key ? 'active-list' : '')}>
-                  {menu[key].map(item => {
+                <div key={category.category} className={'menu-list ' + (isActive === category.category ? 'active-list' : '')}>
+                  {category.items.map(item => {
                     return (
                       <div className="menu-item" key={item.name}>
                         <h3>{item.name} | {item.price}</h3>

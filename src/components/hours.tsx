@@ -1,31 +1,27 @@
-import React from "react"
+import React from 'react';
+import moment from 'moment';
 
-import "../styles/_hours.scss"
+import '../styles/_hours.scss';
+import { Hour } from '../models/KenticoModels';
 
-let width = window.innerWidth;
+const width = window.innerWidth;
 
-let days = {
-  Sunday: 'Sun',
-  Monday: 'Mon',
-  Tuesday: 'Tue',
-  Wednesday: 'Wed',
-  Thursday: 'Thu',
-  Friday: 'Fri',
-  Saturday: 'Sat'
+interface HoursProps {
+  hours: Hour[]
 }
 
-const Hours = ({ hours }) => (
+const Hours: React.SFC<HoursProps> = ({ hours }: HoursProps) => (
   <div id="hours" className="hours-container">
     <div className="row justify-content-around">
       {hours.map(day => {
         return (
-          (width > 767 || day.isClosed !== 'Yes') && (
+          (width > 767 || day.isClosed) && (
             <div key={day.day} className="hours-content">
-            <h4>{width > 767 ? day.day : days[day.day]}</h4>
+            <h4>{width > 767 ? day.day : moment().day(day.day).format('ddd')}</h4>
             <div className="divider" />
             <div className="hours">
-              { day.isClosed === "Yes"
-                  ? ( width > 767 && <p>Closed</p> )
+              { !day.isClosed
+                  ? <p>Closed</p>
                   : (
                       <React.Fragment>
                         <p>{day.openTime}</p><hr /><p>{day.closeTime}</p>

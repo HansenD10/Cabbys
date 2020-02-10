@@ -1,7 +1,7 @@
-import { fromEvent, merge } from "rxjs";
+import { fromEvent, merge, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-const getScrollAsStream = () => {
+const getScrollAsStream = (): Observable<number> => {
   const wheelEvent = fromEvent(window, "wheel");
   const scrollEvent = fromEvent(window, "scroll");
   const touchEvent = fromEvent(window, "touchmove");
@@ -19,14 +19,18 @@ const getScrollAsStream = () => {
   return stream;
 }
 
-const getScroll = () => {
+const getScroll = (): number => {
   const currentScroll = window.pageYOffset;
-  let percent = (currentScroll / document.getElementById("home").clientHeight);
+  const container = document.getElementById('home');
 
-  percent = Math.max(percent, 0);
-  percent = Math.min(percent, 1);
+  if (container) {
+    let percent = (currentScroll / container.clientHeight);
+    percent = Math.max(percent, 0);
+    percent = Math.min(percent, 1);  
+    return percent;
+  }
   
-  return percent;
+  return 0;
 }
 
 export {

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { SFC } from "react";
 import { Element } from "react-scroll";
 import { transformImage } from "../services/image-service";
 import LazyLoad from 'react-lazyload';
 
 import "../styles/_events.scss"
 import SocialMedia from "./socialmedia";
+import { EventList, SocialMediaLink } from "../models/KenticoModels";
 
-let renderEvents = (eventList, links) => {
+interface EventsProps {
+  events: EventList,
+  links: SocialMediaLink[]
+}
+
+let renderEvents = (eventList: EventList, links: SocialMediaLink[]) => {
   return eventList.events.length > 0 ?
     (
       eventList.events.map(event => {
@@ -14,9 +20,9 @@ let renderEvents = (eventList, links) => {
           <div key={event.headline} className="event-card">
             <div className="header-image">
               <picture>
-                <source media="(min-width: 768px)" srcSet={transformImage(event.headerImage, 550, 300)} />
-                <source media="(max-width: 767px)" srcSet={transformImage(event.headerImage, 733, 300)} />
-                <img src={event.headerImage} alt={event.headline} />
+                <source media="(min-width: 768px)" srcSet={transformImage(event.headerImage.url, 550, 300)} />
+                <source media="(max-width: 767px)" srcSet={transformImage(event.headerImage.url, 733, 300)} />
+                <img src={event.headerImage.url} alt={event.headline} />
               </picture>
             </div>
             <div className="card-details">
@@ -38,15 +44,15 @@ let renderEvents = (eventList, links) => {
     )
 }
 
-const Events = ({ events, links }) => {
+const Events: SFC<EventsProps> = ({ events, links }) => {
   return(
-    <LazyLoad offset={100}>
-      <Element name="#events" className="events-wrapper">
+    <Element name="#events" className="events-wrapper">
+      <LazyLoad height={600} offset={100}>
         <div className="events-list">
           { renderEvents(events, links) }
         </div>
-      </Element>
-    </LazyLoad>
+      </LazyLoad>
+    </Element>
   )
 }
 
