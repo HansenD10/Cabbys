@@ -52,7 +52,7 @@ export default class Gallery extends Component<GalleryProps, GalleryState> {
                       <source media="(max-width: 767px)" srcSet={transformImage(image.url, 180, 240)} />
                       <img src={image.url} alt={image.name} />
                     </picture>
-                  </LazyLoad>>
+                  </LazyLoad>
                 </div>
               )
             })}
