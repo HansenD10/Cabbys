@@ -17,20 +17,20 @@ const Hours: React.SFC<HoursProps> = ({ hours }: HoursProps) => (
         return (
           (width > 767 || day.isClosed) && (
             <div key={day.day} className="hours-content">
-            <h4>{width > 767 ? day.day : moment().day(day.day).format('ddd')}</h4>
-            <div className="divider" />
-            <div className="hours">
-              { !day.isClosed
+              <h4>{width > 767 ? day.day : moment().day(day.day).format('ddd')}</h4>
+              <div className="divider" />
+              <div className="hours">
+                {!day.isClosed
                   ? <p>Closed</p>
                   : (
-                      <React.Fragment>
-                        <p>{day.openTime}</p><hr /><p>{day.closeTime}</p>
-                      </React.Fragment>
+                    <React.Fragment>
+                      <p>{day.openTime}</p><hr /><p>{day.closeTime}</p>
+                    </React.Fragment>
                   )
-              }
+                }
+              </div>
+              <div className="bottom" />
             </div>
-            <div className="bottom" />
-          </div>
           )
         )
       })}

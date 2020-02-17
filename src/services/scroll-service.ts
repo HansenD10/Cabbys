@@ -14,7 +14,7 @@ const getScrollAsStream = (): Observable<number> => {
     wheelEvent.pipe(map(event => getScroll())),
     mouseWheelEvent.pipe(map(event => getScroll())),
     resizeEvent.pipe(map(event => getScroll()))
-  ); 
+  );
 
   return stream;
 }
@@ -26,10 +26,10 @@ const getScroll = (): number => {
   if (container) {
     let percent = (currentScroll / container.clientHeight);
     percent = Math.max(percent, 0);
-    percent = Math.min(percent, 1);  
+    percent = Math.min(percent, 1);
     return percent;
   }
-  
+
   return 0;
 }
 

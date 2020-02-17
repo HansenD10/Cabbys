@@ -1,7 +1,6 @@
 import * as React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Spinner from 'react-spinner-material';
 import Header from './components/header';
 import HomePage from "./components/homepage"
 import Hours from "./components/hours"
@@ -28,28 +27,26 @@ class App extends React.Component<{}, AppState> {
     this.kenticoService.GetData()
       .then(basePage => this.setState({ basePage }))
       .catch(err => {
-        console.log(err);
         this.setState({ error: true })
       });
   }
 
   public render(): React.ReactNode {
     if (this.state != null && this.state.basePage) {
-      console.log(this.state);
       const { navigation, homePage, hours, menu, eventList, about, gallery } = this.state.basePage;
 
-      return ( 
-          <React.Fragment>
-            <script src="https://kit.fontawesome.com/6128e76e98.js"></script>
-              {navigation && homePage && <Header nav={navigation} logo={homePage.logo} /> }
-              {homePage && <HomePage backgroundImage={homePage.backgroundImage} /> }
-              {hours && <Hours hours={hours.hours} /> }
-              {menu && <Menu menu={menu.categories} /> }
-              {eventList && about && <Events events={eventList} links={about.socialMediaLinks} /> }
-              {gallery && <Gallery gallery={gallery} /> }
-              {about && <AboutComponent about={about} /> }
-          </React.Fragment>
-        )
+      return (
+        <React.Fragment>
+          <script src="https://kit.fontawesome.com/6128e76e98.js"></script>
+          {navigation && homePage && <Header nav={navigation} logo={homePage.logo} />}
+          {homePage && <HomePage backgroundImage={homePage.backgroundImage} />}
+          {hours && <Hours hours={hours.hours} />}
+          {menu && <Menu menu={menu.categories} />}
+          {eventList && about && <Events events={eventList} links={about.socialMediaLinks} />}
+          {gallery && <Gallery gallery={gallery} />}
+          {about && <AboutComponent about={about} />}
+        </React.Fragment>
+      )
     } else if (this.state != null && this.state.error) {
       return (
         <React.Fragment>
@@ -64,9 +61,7 @@ class App extends React.Component<{}, AppState> {
       return (
         <React.Fragment>
           <script src="https://kit.fontawesome.com/6128e76e98.js"></script>
-          <div className="loading-wrapper">
-            <Spinner size={120} spinnerColor={"#1371af"}  spinnerWidth={10} visible={true}></Spinner>
-          </div>
+          <div className="loading-wrapper"></div>
         </React.Fragment>
       )
     }

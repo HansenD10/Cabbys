@@ -11,11 +11,11 @@ export class BasePage extends ContentItem {
 
   constructor(data: ITypeResolverData | undefined) {
     super();
-    data 
+    data
       ? this.mapData(data)
       : this.setEmpty();
   }
-  
+
   setEmpty = () => {
     this.navigation = undefined;
     this.homePage = undefined;

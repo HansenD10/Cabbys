@@ -19,7 +19,7 @@ interface HeaderState {
   }
 }
 
-export default class Header extends Component<HeaderProps, HeaderState> { 
+export default class Header extends Component<HeaderProps, HeaderState> {
   private scrollObservable: Observable<number>;
 
   constructor(props: HeaderProps) {
@@ -28,8 +28,8 @@ export default class Header extends Component<HeaderProps, HeaderState> {
       scroll: 0,
       logoStyle: { top: "", width: "" }
     }
-  
-    this.scrollObservable = getScrollAsStream();  
+
+    this.scrollObservable = getScrollAsStream();
   }
 
   public componentDidMount(): void {
@@ -53,21 +53,21 @@ export default class Header extends Component<HeaderProps, HeaderState> {
     const logoWidth = (1 - this.state.scroll) * (window.innerWidth < 767 ? 300 : 500);
     return {
       top: `${(1 - this.state.scroll) * (window.innerHeight / 2 - logoWidth / 2)}px`,
-      width: `${logoWidth > 100 ? logoWidth : 100}px`       
+      width: `${logoWidth > 100 ? logoWidth : 100}px`
     };
   }
 
   renderLink(link: NavLink): React.ReactNode {
     return (
       <div key={link.linkText} className="link">
-        <Link 
-          activeClass="active" 
-          to={link.linkUrl} 
-          duration={500} 
+        <Link
+          activeClass="active"
+          to={link.linkUrl}
+          duration={500}
           spy={true}
           offset={-50}
           smooth={true}
-          >{link.linkText.replace(/<\/?p>/g, '')}</Link>
+        >{link.linkText.replace(/<\/?p>/g, '')}</Link>
       </div>
     )
   }
@@ -81,7 +81,7 @@ export default class Header extends Component<HeaderProps, HeaderState> {
           {links.slice(0, 2).map(link => this.renderLink(link))}
         </div>
         <div key={count++} className="nav-section">
-          {links.slice(2,4).map(link => this.renderLink(link))}
+          {links.slice(2, 4).map(link => this.renderLink(link))}
         </div>
       </React.Fragment>
     );
@@ -90,17 +90,17 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   render() {
     return (
       <header style={this.getNavStyle()}>
-        <picture id="logo">
-          <source media="(min-width: 768px)" srcSet={transformImage(this.props.logo.url, 500, 500)} />
-          <source media="(max-width: 767px)" srcSet={transformImage(this.props.logo.url, 300, 300)} />
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            spy={true}>
-            <img className="logo" style={this.state.logoStyle} src={this.props.logo.url} alt={this.props.logo.name}  />
-          </Link>
-        </picture>
+        <Link
+          to="home"
+          smooth={true}
+          duration={500}
+          spy={true}>
+          <picture id="logo">
+            <source media="(min-width: 768px)" srcSet={transformImage(this.props.logo.url, 500, 500)} />
+            <source media="(max-width: 767px)" srcSet={transformImage(this.props.logo.url, 300, 300)} />
+            <img className="logo" style={this.state.logoStyle} src={transformImage(this.props.logo.url, 500, 500)} alt={this.props.logo.name} />
+          </picture>
+        </Link>
         <div className="nav-links">
           <div id="nav-bar" className="navbar">
             {this.renderLinks(this.props.nav.links)}
