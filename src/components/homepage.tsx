@@ -15,9 +15,9 @@ const HomePage: React.SFC<HomeProps> = ({ backgroundImage }: HomeProps) => (
     <div className="dark-overlay"></div>
     <div className="background-image-wrapper">
       <picture>
-        <source media="(min-width:767px)" srcSet={transformImage(backgroundImage.url, 1200, 1200)} />
-        <source media="(min-width:767px)" srcSet={transformImage(backgroundImage.url, 767, 900)} />
-        <img src={backgroundImage.url} alt={backgroundImage.name} />
+        <source media="(min-width:768px)" srcSet={transformImage(backgroundImage.url, 1200, 1200)} />
+        <source media="(max-width:767px)" srcSet={transformImage(backgroundImage.url, 767, 900)} />
+        <img src={transformImage(backgroundImage.url, 767, 900)} alt={backgroundImage.name} />
       </picture>
     </div>
   </Element>

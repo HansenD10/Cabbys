@@ -51,7 +51,11 @@ export default class Menu extends Component<MenuProps, MenuState> {
                     return (
                       <div className="menu-item" key={item.name}>
                         <h3>{item.name} | {item.price}</h3>
-                        <span dangerouslySetInnerHTML={{ __html: item.description }}></span>
+                        {
+                          item.description !== "<p><br></p>"
+                            ? <span dangerouslySetInnerHTML={{ __html: item.description }}></span>
+                            : <React.Fragment></React.Fragment>
+                        }
                       </div>
                     )
                   })}
