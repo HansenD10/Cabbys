@@ -3,7 +3,7 @@ import { Link } from "react-scroll"
 import { Navigation, Asset, NavLink } from '../models/KenticoModels';
 import "../styles/_nav.scss"
 import { transformImage } from "../services/image-service"
-import { getScrollAsStream } from "../services/scroll-service"
+import { getScrollAsStream, getScroll } from "../services/scroll-service"
 import { Observable } from "rxjs";
 
 interface HeaderProps {
@@ -12,10 +12,12 @@ interface HeaderProps {
 }
 
 interface HeaderState {
-  scroll: number,
   logoStyle: {
     top: string,
     width: string
+  },
+  headerStyle: {
+    backgroundColor: string
   }
 }
 
@@ -25,34 +27,48 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   constructor(props: HeaderProps) {
     super(props)
     this.state = {
-      scroll: 0,
-      logoStyle: { top: "", width: "" }
+      logoStyle: { top: '', width: '' },
+      headerStyle: { backgroundColor: '' }
     }
 
     this.scrollObservable = getScrollAsStream();
   }
 
+  public shouldComponentUpdate(nextProps: HeaderProps, nextState: HeaderState): boolean {
+    return !(JSON.stringify(nextProps) === JSON.stringify(this.props))
+      || (
+        this.state.logoStyle.top !== nextState.logoStyle.top
+        || this.state.logoStyle.width !== nextState.logoStyle.width
+        || this.state.headerStyle.backgroundColor !== nextState.headerStyle.backgroundColor
+      );
+  }
+
   public componentDidMount(): void {
     this.scrollObservable.subscribe(scroll => {
-      this.setState({ scroll, logoStyle: this.getLogoStyle() })
+      this.setState({
+        logoStyle: this.getLogoStyle(scroll),
+        headerStyle: this.getNavStyle(scroll)
+      })
     });
 
+    let initialScroll = getScroll();
+
     this.setState({
-      ...this.state,
-      logoStyle: this.getLogoStyle()
+      logoStyle: this.getLogoStyle(initialScroll),
+      headerStyle: this.getNavStyle(initialScroll)
     })
   }
 
-  private getNavStyle(): { backgroundColor: string } {
+  private getNavStyle(scroll: number): { backgroundColor: string } {
     return {
-      backgroundColor: `rgba(19, 113, 175, ${this.state.scroll})`
+      backgroundColor: `rgba(19, 113, 175, ${scroll})`
     }
   }
 
-  private getLogoStyle(): { width: string, top: string } {
-    const logoWidth = (1 - this.state.scroll) * (window.innerWidth < 767 ? 300 : 500);
+  private getLogoStyle(scroll: number): { width: string, top: string } {
+    const logoWidth = (1 - scroll) * (window.innerWidth < 767 ? 300 : 500);
     return {
-      top: `${(1 - this.state.scroll) * (window.innerHeight / 2 - logoWidth / 2)}px`,
+      top: `${(1 - scroll) * (window.innerHeight / 2 - logoWidth / 2)}px`,
       width: `${logoWidth > 100 ? logoWidth : 100}px`
     };
   }
@@ -88,22 +104,25 @@ export default class Header extends Component<HeaderProps, HeaderState> {
   }
 
   render() {
+    const { headerStyle, logoStyle } = this.state;
+    const { logo, nav } = this.props;
+
     return (
-      <header style={this.getNavStyle()}>
+      <header style={headerStyle}>
         <Link
           to="home"
           smooth={true}
           duration={500}
           spy={true}>
           <picture id="logo">
-            <source media="(min-width: 768px)" srcSet={transformImage(this.props.logo.url, 500, 500)} />
-            <source media="(max-width: 767px)" srcSet={transformImage(this.props.logo.url, 300, 300)} />
-            <img className="logo" style={this.state.logoStyle} src={transformImage(this.props.logo.url, 500, 500)} alt={this.props.logo.name} />
+            <source media="(min-width: 768px)" srcSet={transformImage(logo.url, 500, 500)} />
+            <source media="(max-width: 767px)" srcSet={transformImage(logo.url, 300, 300)} />
+            <img className="logo" style={logoStyle} src={transformImage(logo.url, 500, 500)} alt={logo.name} />
           </picture>
         </Link>
         <div className="nav-links">
           <div id="nav-bar" className="navbar">
-            {this.renderLinks(this.props.nav.links)}
+            {this.renderLinks(nav.links)}
           </div>
         </div>
       </header>

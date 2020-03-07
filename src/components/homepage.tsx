@@ -10,17 +10,25 @@ interface HomeProps {
   backgroundImage: Asset
 }
 
-const HomePage: React.SFC<HomeProps> = ({ backgroundImage }: HomeProps) => (
-  <Element id="home" name="home" className="full-block-wrapper">
-    <div className="dark-overlay"></div>
-    <div className="background-image-wrapper">
-      <picture>
-        <source media="(min-width:768px)" srcSet={transformImage(backgroundImage.url, 1200, 1200)} />
-        <source media="(max-width:767px)" srcSet={transformImage(backgroundImage.url, 767, 900)} />
-        <img src={transformImage(backgroundImage.url, 767, 900)} alt={backgroundImage.name} />
-      </picture>
-    </div>
-  </Element>
-)
+export default class HomePage extends React.Component<HomeProps, {}> {
+  shouldComponentUpdate(nextProps: HomeProps, nextState: {}): boolean {
+    return !(JSON.stringify(nextProps) === JSON.stringify(this.props));
+  }
 
-export default HomePage
+  render(): React.ReactNode {
+    const { backgroundImage } = this.props;
+
+    return (
+      <Element id="home" name="home" className="full-block-wrapper">
+        <div className="dark-overlay"></div>
+        <div className="background-image-wrapper">
+          <picture>
+            <source media="(min-width:768px)" srcSet={transformImage(backgroundImage.url, 1200, 1200)} />
+            <source media="(max-width:767px)" srcSet={transformImage(backgroundImage.url, 767, 900)} />
+            <img src={transformImage(backgroundImage.url, 767, 900)} alt={backgroundImage.name} />
+          </picture>
+        </div>
+      </Element>
+    )
+  }
+}

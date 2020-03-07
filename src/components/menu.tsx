@@ -20,6 +20,11 @@ export default class Menu extends Component<MenuProps, MenuState> {
     }
   }
 
+  shouldComponentUpdate(nextProps: MenuProps, nextState: MenuState): boolean {
+    return !(JSON.stringify(nextProps) === JSON.stringify(this.props))
+      || nextState.isActive !== this.state.isActive;
+  }
+
   handleCategoryClick(category: string): void {
     this.setState({ isActive: category })
   }
@@ -54,7 +59,7 @@ export default class Menu extends Component<MenuProps, MenuState> {
                           <h4 className="item-name col p-0">{item.name}</h4>
                           <h4 className="item-price col-auto p-0">{item.price}</h4>
                         </div>
-                        {item.description !== "<p><br></p>" && <div dangerouslySetInnerHTML={{__html: item.description}}></div>}
+                        {item.description !== "<p><br></p>" && <div dangerouslySetInnerHTML={{ __html: item.description }}></div>}
                       </div>
                     )
                   })}

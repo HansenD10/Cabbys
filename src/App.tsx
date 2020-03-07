@@ -22,19 +22,15 @@ interface AppState {
 class App extends React.Component<{}, AppState> {
   private kenticoService: KenticoService = new KenticoService();
 
-  constructor(props: {}) {
-    super(props);
-    this.kenticoService.GetData()
-      .then(basePage => this.setState({ basePage }))
-      .catch(err => {
-        this.setState({ error: true })
-      });
+  public componentDidMount() {
+    this.kenticoService.SiteData
+      .subscribe(basePage => this.setState({ basePage }), error => console.error(error))
+    this.kenticoService.InitializeKenticoData();
   }
 
   public render(): React.ReactNode {
     if (this.state != null && this.state.basePage) {
       const { navigation, homePage, hours, menu, eventList, about, gallery } = this.state.basePage;
-
       return (
         <React.Fragment>
           <script src="https://kit.fontawesome.com/6128e76e98.js"></script>
@@ -60,8 +56,6 @@ class App extends React.Component<{}, AppState> {
     } else {
       return (
         <React.Fragment>
-          <script src="https://kit.fontawesome.com/6128e76e98.js"></script>
-          <div className="loading-wrapper"></div>
         </React.Fragment>
       )
     }

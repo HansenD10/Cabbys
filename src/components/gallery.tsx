@@ -26,6 +26,12 @@ export default class Gallery extends Component<GalleryProps, GalleryState> {
     }
   }
 
+  shouldComponentUpdate(nextProps: GalleryProps, nextState: GalleryState): boolean {
+    return !(JSON.stringify(nextProps) === JSON.stringify(this.props))
+      || this.state.isOpen !== nextState.isOpen
+      || this.state.selectedImage !== nextState.selectedImage;
+  }
+
   handleImageSelect = (image: Asset): void => {
     this.setState({ isOpen: true, selectedImage: image });
   }
