@@ -50,8 +50,11 @@ export default class Menu extends Component<MenuProps, MenuState> {
                   {category.items.map(item => {
                     return (
                       <div className="menu-item" key={item.name}>
-                        <h3>{item.name} | {item.price}</h3>
-                        <span dangerouslySetInnerHTML={{__html: item.description}}></span>
+                        <div className="row menu-header">
+                          <h4 className="item-name col p-0">{item.name}</h4>
+                          <h4 className="item-price col-auto p-0">{item.price}</h4>
+                        </div>
+                        {item.description !== "<p><br></p>" && <div dangerouslySetInnerHTML={{__html: item.description}}></div>}
                       </div>
                     )
                   })}
