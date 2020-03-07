@@ -28,28 +28,28 @@ let renderEvents = (eventList: EventList, links: SocialMediaLink[]) => {
             <div className="card-details">
               <h3>{event.headline}</h3>
               <h4>{event.date}</h4>
-              <span dangerouslySetInnerHTML={{__html: event.description}}></span>
+              <span dangerouslySetInnerHTML={{ __html: event.description }}></span>
             </div>
           </div>
         )
       })
     ) :
-    ( 
+    (
       <div className="error-wrapper">
-        <p className="error" dangerouslySetInnerHTML={{__html: eventList.missingEventMessage}}></p>
+        <p className="error" dangerouslySetInnerHTML={{ __html: eventList.missingEventMessage }}></p>
         <div className="social-media-wrapper-events">
-          <SocialMedia links={links}/>
+          <SocialMedia links={links} />
         </div>
-      </div> 
+      </div>
     )
 }
 
 const Events: SFC<EventsProps> = ({ events, links }) => {
-  return(
+  return (
     <Element name="#events" className="events-wrapper">
       <LazyLoad height={600} offset={100}>
         <div className="events-list">
-          { renderEvents(events, links) }
+          {renderEvents(events, links)}
         </div>
       </LazyLoad>
     </Element>

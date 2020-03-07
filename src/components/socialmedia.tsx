@@ -12,11 +12,11 @@ const SocialMedia: SFC<SocialMediaLinkProps> = ({ links }: SocialMediaLinkProps)
         links.map(link => {
           return (
             <a key={link.link} rel="noopener noreferrer" target="_blank" href={link.link}>
-              <img alt={`link to ${link.link}`} className="icon" src={link.linkIcon.url}/>
+              <img alt={`link to ${link.link}`} className="icon" src={link.linkIcon.url} />
             </a>
           )
         })
-      }   
+      }
     </React.Fragment>
   )
 }

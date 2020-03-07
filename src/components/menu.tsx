@@ -23,11 +23,11 @@ export default class Menu extends Component<MenuProps, MenuState> {
   handleCategoryClick(category: string): void {
     this.setState({ isActive: category })
   }
-  
+
   render(): React.ReactNode {
     const { menu } = this.props;
     const { isActive } = this.state;
-    
+
     return (
       <Element name="#menu" className="menu-container container">
         <div className="row">
@@ -35,14 +35,14 @@ export default class Menu extends Component<MenuProps, MenuState> {
             <h2>Categories</h2>
             {menu.map(category => {
               return (
-                <h4 
-                  key={category.category} 
+                <h4
+                  key={category.category}
                   className={isActive === category.category ? 'active-category' : ''}
                   onClick={() => this.handleCategoryClick(category.category)}
-                  >{category.category}</h4>
+                >{category.category}</h4>
               )
             })}
-          </div> 
+          </div>
           <div className="col-md-8 menu-display-wrapper">
             {menu.map(category => {
               return (

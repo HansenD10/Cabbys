@@ -1,7 +1,7 @@
 import React, { ComponentClass } from "react"
 import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps"
 
-const GoogleMapComponent: ComponentClass<any, any> = withScriptjs(withGoogleMap((props: any) => 
+const GoogleMapComponent: ComponentClass<any, any> = withScriptjs(withGoogleMap((props: any) =>
   <GoogleMap
     center={{ lat: 43.569134, lng: -88.943925 }}
     zoom={15}
@@ -14,7 +14,7 @@ const GoogleMapComponent: ComponentClass<any, any> = withScriptjs(withGoogleMap(
       zoomControl: false,
       rotateControl: false,
       fullscreenControl: false
-    }} 
+    }}
   >
   </GoogleMap>
 ))
