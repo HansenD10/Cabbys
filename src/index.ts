@@ -5,4 +5,7 @@ import App from './App';
 import { InitializeApp } from './services/bootstrap-service';
 
 InitializeApp();
-ReactDOM.render(React.createElement(App), document.getElementById('root') as HTMLElement);
+ReactDOM.render(
+  React.createElement(App),
+  document.getElementById('root') as HTMLElement
+);

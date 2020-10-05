@@ -111,13 +111,7 @@
       "spaces",
       2
     ],
-    "trailing-comma": [
-      true,
-      {
-        "multiline": "always",
-        "singleline": "never"
-      }
-    ],
+    "trailing-comma": [false],
     "linebreak-style": [
       true,
       "LF"

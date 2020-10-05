@@ -6,14 +6,14 @@ import { transformImage } from '../services/image-service';
 import Modal from './modal';
 
 import '../styles/_gallery.scss';
-import { Asset } from '../models/KenticoModels';
+import { ElementModels } from '@kentico/kontent-delivery';
 
 interface GalleryProps {
-  gallery: Asset[];
+  gallery: ElementModels.AssetModel[];
 }
 
 interface GalleryState {
-  selectedImage: Asset | undefined;
+  selectedImage: ElementModels.AssetModel | undefined;
   isOpen: boolean;
 }
 
@@ -23,20 +23,25 @@ export default class Gallery extends Component<GalleryProps, GalleryState> {
     this.state = {
       selectedImage: undefined,
       isOpen: false
-    }
+    };
   }
 
-  shouldComponentUpdate(nextProps: GalleryProps, nextState: GalleryState): boolean {
-    return !(JSON.stringify(nextProps) === JSON.stringify(this.props))
-      || this.state.isOpen !== nextState.isOpen
-      || this.state.selectedImage !== nextState.selectedImage;
+  shouldComponentUpdate(
+    nextProps: GalleryProps,
+    nextState: GalleryState
+  ): boolean {
+    return (
+      !(JSON.stringify(nextProps) === JSON.stringify(this.props)) ||
+      this.state.isOpen !== nextState.isOpen ||
+      this.state.selectedImage !== nextState.selectedImage
+    );
   }
 
-  handleImageSelect = (image: Asset): void => {
+  handleImageSelect(image: ElementModels.AssetModel): void {
     this.setState({ isOpen: true, selectedImage: image });
   }
 
-  handleClose = (): void => {
+  handleClose(): void {
     this.setState({ isOpen: false });
   }
 
@@ -45,26 +50,53 @@ export default class Gallery extends Component<GalleryProps, GalleryState> {
     const { isOpen, selectedImage } = this.state;
 
     return (
-      <Element name="gallery" id="#gallery" className="gallery-wrapper container">
+      <Element
+        name="gallery"
+        id="#gallery"
+        className="gallery-wrapper container"
+      >
         <div className="image-row row">
-          {gallery.map(image => {
-            return (
-              <div onClick={() => this.handleImageSelect(image)} key={image.name} id={image.name} className="col-6 col-sm-4 col-md-3 col-lg-2 image-wrapper">
-                <LazyLoad height={600} offset={200}>
-                  <picture>
-                    <source media="(min-width: 1200)" srcSet={transformImage(image.url, 185, 250)} />
-                    <source media="(min-width: 992px)" srcSet={transformImage(image.url, 140, 195)} />
-                    <source media="(min-width: 768px)" srcSet={transformImage(image.url, 190, 250)} />
-                    <source media="(max-width: 767px)" srcSet={transformImage(image.url, 180, 240)} />
-                    <img src={image.url} alt={image.name} />
-                  </picture>
-                </LazyLoad>
-              </div>
-            )
-          })}
+          {gallery.map(
+            (image: ElementModels.AssetModel): React.ReactNode => {
+              return (
+                <div
+                  onClick={(): void => this.handleImageSelect(image)}
+                  key={image.name}
+                  id={image.name}
+                  className="col-6 col-sm-4 col-md-3 col-lg-2 image-wrapper"
+                >
+                  <LazyLoad height={600} offset={200}>
+                    <picture>
+                      <source
+                        media="(min-width: 1200)"
+                        srcSet={transformImage(image.url, 185, 250)}
+                      />
+                      <source
+                        media="(min-width: 992px)"
+                        srcSet={transformImage(image.url, 140, 195)}
+                      />
+                      <source
+                        media="(min-width: 768px)"
+                        srcSet={transformImage(image.url, 190, 250)}
+                      />
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={transformImage(image.url, 180, 240)}
+                      />
+                      <img src={image.url} alt={image.name} />
+                    </picture>
+                  </LazyLoad>
+                </div>
+              );
+            }
+          )}
         </div>
-        <Modal isOpen={isOpen} image={selectedImage} handleClose={this.handleClose.bind(this)} />
+        <Modal
+          isOpen={isOpen}
+          image={selectedImage}
+          handleClose={(): void => this.handleClose()}
+        />
       </Element>
-    )
+    );
   }
 }
