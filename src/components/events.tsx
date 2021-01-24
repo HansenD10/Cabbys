@@ -15,9 +15,9 @@ interface EventsProps {
 }
 
 export default class Events extends React.Component<EventsProps, {}> {
-  shouldComponentUpdate(nextProps: EventsProps, nextState: {}): boolean {
-    return !(JSON.stringify(nextProps) === JSON.stringify(this.props));
-  }
+  // shouldComponentUpdate(nextProps: EventsProps, nextState: {}): boolean {
+  //   return !(JSON.stringify(nextProps) === JSON.stringify(this.props));
+  // }
 
   renderEvents(
     eventList: EventList,
@@ -40,17 +40,17 @@ export default class Events extends React.Component<EventsProps, {}> {
                   />
                   <source
                     media="(max-width: 767px)"
-                    srcSet={transformImage(event.headerImage[0].url, 733, 300)}
+                    srcSet={transformImage(event.headerImage.value[0].url, 733, 300)}
                   />
                   <img
-                    src={event.headerImage[0].url}
+                    src={event.headerImage.value[0].url}
                     alt={event.headline.value}
                   />
                 </picture>
               </div>
               <div className="card-details">
-                <h3>{event.headline}</h3>
-                <h4>{event.date}</h4>
+                <h3>{event.headline.value}</h3>
+                <h4>{event.date.value}</h4>
                 <span
                   dangerouslySetInnerHTML={{ __html: event.description.value }}
                 />
