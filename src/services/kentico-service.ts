@@ -30,7 +30,10 @@ export default class KenticoService {
           (): SocialMediaLink => new SocialMediaLink()
         ),
         new TypeResolver('menu', (): Menu => new Menu()),
-        new TypeResolver('menu_category', (): MenuCategory => new MenuCategory()),
+        new TypeResolver(
+          'menu_category',
+          (): MenuCategory => new MenuCategory()
+        ),
         new TypeResolver('menu_item', (): MenuItem => new MenuItem()),
         new TypeResolver('link', (): NavLink => new NavLink()),
         new TypeResolver('event_list', (): EventList => new EventList()),
