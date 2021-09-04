@@ -14,6 +14,6 @@ export const transformImage = (
   height: number
 ): string => {
   return `${imageUrl}?w=${width}&h=${height}${
-    isIPhone ? '&fm=png' : '&fm=webp'
+    isIPhone() ? '&fm=png' : '&fm=webp'
   }`;
 };

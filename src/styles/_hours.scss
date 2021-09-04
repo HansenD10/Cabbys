@@ -5,6 +5,7 @@
 	color: white;
 	background-color: $primary_background;
 	box-shadow: $global-dark-shadow;
+	z-index: 9;
 
 	.hours-content {
 		display: flex;
@@ -29,6 +30,7 @@
 				background-color: #ffffffa0;
 				border-width: 2px;
 				width: 25%;
+				margin: 1rem auto;
 			}
 
 			p {

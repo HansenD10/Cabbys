@@ -23,7 +23,7 @@ export default class HoursComponent extends React.Component<HoursProps, {}> {
             (day: Hours): React.ReactNode => {
               return (
                 (width > 767 || day.isClosed.value[0].name === 'No') && (
-                  <div key={day.day.value} className="hours-content">
+                  <div key={day.day.value} className="hours-content col">
                     <h4>
                       {width > 767
                         ? day.day.value
