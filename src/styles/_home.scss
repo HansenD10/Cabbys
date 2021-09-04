@@ -8,6 +8,7 @@
 	height: 100vh;
 	overflow: hidden;
 	box-shadow: $global-dark-shadow;
+	z-index: 10;
 
 	.dark-overlay {
 		position: absolute;
